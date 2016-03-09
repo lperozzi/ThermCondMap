@@ -147,9 +147,13 @@
                 top: 130px;
                 color: rgba(255, 255, 255, 0.9);
                 text-align: justify;
-                font: 400 16px/20px 'Roboto';
+                font: 400 18px/20px 'Roboto';
                 left: 100px;
                 right: 500px;
+            }
+
+            .span {
+                font-size: 13px;
             }
 
             .title-inner {
@@ -212,6 +216,7 @@
                     right: 0;
                     left: 0;
                 }
+
                 .title-inner {
                     position: static;
                 }
@@ -257,7 +262,7 @@
 
         #sgs_grid_2{
           polygon-fill: #c94741;
-          polygon-opacity: .7;
+          polygon-opacity: 1;
           line-color: #FFF;
           line-width: 0.5;
           line-opacity: 1;
@@ -284,7 +289,7 @@
 
         #sgs_grid_2{
         polygon-fill: #c94741;
-        polygon-opacity: .7;
+        polygon-opacity: 1;
         line-color: #FFF;
         line-width: 0.5;
         line-opacity: 1;
@@ -311,7 +316,7 @@
 
         #sgs_grid_2{
         polygon-fill: #c94741;
-        polygon-opacity: .7;
+        polygon-opacity: 1;
         line-color: #FFF;
         line-width: 0.5;
         line-opacity: 1;
@@ -338,7 +343,7 @@
         /** category visualization */
 
         #geology {
-        polygon-opacity: 0.7;
+        polygon-opacity: 1;
         line-color: #000000;
         line-width: 0.2;
         line-opacity: 0.6;
@@ -385,47 +390,47 @@
 
         #geology[formation="Formation de Beauharnois"] {
            polygon-fill: #eae1fc;
-          polygon-opacity: .7;
+          polygon-opacity: 1;
         }
         #geology[formation="Formation de Deschambault"] {
            polygon-fill: #aacbfd;
-          polygon-opacity: .7;
+          polygon-opacity: 1;
         }
         #geology[formation="Formation de Cairnside"] {
            polygon-fill: #fdfcb5;
-          polygon-opacity: .7;
+          polygon-opacity: 1;
         }
         #geology[formation="Formation de Laval"] {
            polygon-fill: #d6ffff;
-          polygon-opacity: .7;
+          polygon-opacity: 1;
         }
         #geology[formation="Formation de Tétreauville (Région de Montréal); Formation de Neuville, Membre de Grondines (Région de Québec)"] {
            polygon-fill: #d7e4f9;
-          polygon-opacity: .7;
+          polygon-opacity: 1;
         }
         #geology[formation="Shale d'Utica"] {
            polygon-fill: #cba053;
-          polygon-opacity: .7;
+          polygon-opacity: 1;
         }
         #geology[formation="Formation de Theresa"] {
            polygon-fill: #fcea91;
-          polygon-opacity: .7;
+          polygon-opacity: 1;
         }
         #geology[formation="Formations de Leray, de Lowville et de Pamelia"] {
            polygon-fill: #44f4f3;
-          polygon-opacity: .7;
+          polygon-opacity: 1;
         }
         #geology[formation="Formations de Montréal et de Neuville"] {
            polygon-fill: #3d99fc;
-          polygon-opacity: .7;
+          polygon-opacity: 1;
         }
         #geology[formation="Formation de Covey Hill"] {
            polygon-fill: #f4d854;
-          polygon-opacity: .7;
+          polygon-opacity: 1;
         }
         #geology[formation="Formation de Nicolet"] {
            polygon-fill: #e5d0a9;
-          polygon-opacity: .7;
+          polygon-opacity: 1;
         }
     </style>
 
@@ -435,7 +440,7 @@
 
         #epaisseur{
             polygon-fill: #FFFFCC;
-            polygon-opacity: 0.7;
+            polygon-opacity: 1;
             line-color: #FFF;
             line-width: 0.1;
             line-opacity: 1;
@@ -530,7 +535,8 @@
               <h1 style="text-transform:uppercase;" class="title">Conductivité thermique</h1>
           </div>
           <div id="textbox">
-              <p>Carte des conductivités thermiques au niveau du roc dans la communauté métropolitaine de Montréal. </p>
+              <p>Carte des conductivités thermiques au niveau du roc dans la communauté métropolitaine de Montréal.</p>
+              <!-- <p style="font-size:16px;">Carte géologiques d'après Globensky (1987) et carte des unitées thermostratigraphiques d'après Sirois (2014).</p> -->
           </div>
       </div>
 
@@ -806,13 +812,13 @@
 
 
 
-              var op = 0.7;
+              var op = 0.5;
               layer.setOpacity(op);
 
               $(function() {
                   $( "#slider-range-min" ).slider({
                       range: "min",
-                      value: 70,
+                      value: 50,
                       min: 0,
                       max: 100,
                       slide: function( event, ui ) {
