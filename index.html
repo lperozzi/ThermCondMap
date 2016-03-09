@@ -570,21 +570,21 @@
           <ul>
               <li style="font-size:18px;text-transform:uppercase">Données</li>
               <li><button id="forage" class="btn btn-primary">Mesures de forages</button></li>
-              <li><button id="affleurement" class="btn btn-primary">Mesures d'affleurements</button></li>
-              <li><button id="synth" class="btn btn-primary">Donnée synthetiques</button></li>
+              <li><button id="affleurement" class="btn btn-primary">Mesures d’affleurements</button></li>
+              <li><button id="synth" class="btn btn-primary">Données synthétiques</button></li>
           </ul>
           <ul>
               <li style="font-size:18px;text-transform:uppercase">Simulations</li>
-              <li><button id="real" class="btn btn-primary">Realisation stochastique</button></li>
-              <li><button id="mean" class="btn btn-primary">Moyenne des realisations</button></li>
+              <li><button id="real" class="btn btn-primary">Réalisation stochastique</button></li>
+              <li><button id="mean" class="btn btn-primary">Moyenne des réalisations</button></li>
               <li><button id="std" class="btn btn-primary">Incertitude</button></li>
               <li></li>
           </ul>
           <ul>
               <li style="font-size:18px;text-transform:uppercase;">Géologie</li>
-              <li><button id="thermostrati" class="btn btn-primary">Unités thermostrati.</button></li>
-              <li><button id="geology" class="btn btn-primary">Géologie détaillé</button></li>
-              <li><button id="epaisseur" class="btn btn-primary">Epaisseur dépôts meubles</button></li>
+              <li><button id="thermostrati" class="btn btn-primary">Unitées thermostrati.</button></li>
+              <li><button id="geology" class="btn btn-primary">Géologie détaillée</button></li>
+              <li><button id="epaisseur" class="btn btn-primary">Épaisseur dépôts meubles</button></li>
           </ul>
           <ul>
               <li></li>
@@ -605,7 +605,7 @@
       <script id='infowindow_r3' type="infowindow/html">
       <div class="cartodb-tooltip-content-wrapper dark">
         <div class="cartodb-tooltip-content">
-          <h4 style="text-transform:none;font-size:14px">Conductivité thermique simulé  pour une réalisation (W/mK) </h4>
+          <h4 style="text-transform:none;font-size:14px">Conductivité thermique simulée  pour une réalisation (W/mK) </h4>
           <p>{{r3}}</p>
         </div>
       </div>
@@ -614,7 +614,7 @@
       <script id='infowindow_mean' type="infowindow/html">
       <div class="cartodb-tooltip-content-wrapper dark">
         <div class="cartodb-tooltip-content">
-          <h4 style="text-transform:none;font-size:14px">Conductivité thermique simulé moyenne (W/mK)</h4>
+          <h4 style="text-transform:none;font-size:14px">Conductivité thermique simulée (moyenne des réalisations) (W/mK)</h4>
           <p>{{mean}}</p>
         </div>
       </div>
@@ -630,20 +630,6 @@
       </script>
 
 
-      <script type="infowindow/html" id="infowindow_geology">
-        <div class="cartodb-popup v2">
-        <a href="#close" class="cartodb-popup-close-button close">x</a>
-
-           <div class="cartodb-popup-content-wrapper">
-
-             <div class="cartodb-popup-content">
-               <h4 style="text-transform:none;font-size:14px;color:#404040">Géologie</h4>
-               <p style="text-transform:none;font-size:14px;color:#000">{{formation}}</p>
-             </div>
-           </div>
-           <div class="cartodb-popup-tip-container"></div>
-        </div>
-      </script>
 
       <script type="infowindow/html" id="infowindow_geology">
         <div class="cartodb-popup v2">
@@ -688,7 +674,7 @@
            <div class="cartodb-popup-content-wrapper">
              <div class="cartodb-popup-content">
                <!-- content.data contains the field info -->
-               <h4 style="text-transform:none;font-size:14px;color:#404040">Unité thermostratigraphique </h4>
+               <h4 style="text-transform:none;font-size:14px;color:#404040">Unitée thermostratigraphique </h4>
                <p style="text-transform:none;font-size:14px;color:#000">{{unite_stra}}</p>
              </div>
            </div>
@@ -724,7 +710,7 @@
       function main() {
 
           var Legend_simu = new cdb.geo.ui.Legend.Density({
-              title: 'Conductivité thermique simulé (W/mK)',
+              title: 'Conductivité thermique simulée (W/mK)',
               left: "2", right: "4", colors: [ "#3783bb", "#a7d0e4", "#f7f6f6", "#f7b799", "#c94741"]
           });
           var Legend_std = new cdb.geo.ui.Legend.Density({
@@ -748,7 +734,7 @@
             ]
           });
           var Legend_thermostrati = new cdb.geo.ui.Legend.Custom({
-            title: "Unités thermostratigraphiques",
+            title: "Unitées thermostratigraphiques",
             data: [
               { name: "Queenston et Lorraine",  value: "#ffffcc" },
               { name: "St. Rosalie et Utica",       value: "#ffeda0" },
