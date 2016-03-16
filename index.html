@@ -11,7 +11,17 @@
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <link rel="stylesheet" href="http://jqueryui.com/resources/demos/style.css">
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap.css" rel="stylesheet" />
+    <!-- <link href="assets/css/ct-paper.css" rel="stylesheet"/> -->
+    <link href="assets/css/demo.css" rel="stylesheet" />
+    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.0/css/bootstrap-toggle.min.css" rel="stylesheet">
+
+
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Oswald:400,700' rel='stylesheet' type='text/css'>
     <style>
             html, body, #map {
                 height: 100%;
@@ -30,15 +40,18 @@
 
             #button{
                 position: absolute;
-                top:150px;
-                right:45px;
+                top:200px;
+                right:20px;
                 text-align: right;
-                width:200px;
+                width:370px;
+                background-color: #404040;
+                border-radius: 10px;
+                padding: 10px 10px 10px 10px;
             }
             .button > p {
                 width:250px;
                 color: #fff;
-                left:300px;
+                /*left:300px;*/
                 text-align: right;
             }
 
@@ -48,7 +61,7 @@
                 list-style-type: none;
                 bottom: 36px;
                 border-radius: 4px;
-                width:300px;
+                width:330px;
             }
             .button li {
                 padding: 4px;
@@ -56,7 +69,7 @@
                 font: 'Roboto';
                 color: #fff;
                 cursor: pointer;
-                width: 200px;
+                width: 350px;
             }
 
             .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open .dropdown-toggle.btn-primary {
@@ -72,8 +85,8 @@
 
             .btn
             {
-                background-color: #404040;
-                border-color: #404040;
+                /*background-color: #404040;*/
+                /*border-color: #404040;*/
                 color:#FFF;
                 font: 400 14px/20px 'Roboto';
             }
@@ -255,6 +268,59 @@
                     left: auto;
                 }
             }
+            .slider-info .ui-widget-header {
+                background-color: #f0ad4e;
+            }
+
+            .ui-widget-content {
+                background-color: #E5E5E5;
+            }
+            .ui-widget {
+                font-size: 1.1em;
+            }
+            .ui-slider-horizontal {
+                height: 8px;
+            }
+            .ui-slider {
+                border-radius: 3px;
+                position: relative;
+                text-align: left;
+            }
+            ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
+                background: white;
+                background: -moz-linear-gradient(top, white 0%, #f1f1f2 100%);
+                background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(100%, #f1f1f2));
+                background: -webkit-linear-gradient(top, white 0%, #f1f1f2 100%);
+                background: -o-linear-gradient(top, white 0%, #f1f1f2 100%);
+                background: -ms-linear-gradient(top, white 0%, #f1f1f2 100%);
+                background: linear-gradient(to bottom, white 0%, #f1f1f2 100%);
+                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f1f1f2',GradientType=0 );
+                border-radius: 50%;
+                box-shadow: 0 1px 1px #FFFFFF inset, 0 1px 2px rgba(0, 0, 0, 0.4);
+                height: 15px;
+                width: 15px;
+                cursor: pointer;
+            }
+            .ui-widget-header {
+                background: #f0ad4e;
+            }
+
+            span.highlight {
+                background-color: #404040;
+                border-radius:5px;
+                padding: 5px 15px 5px 15px;
+                color:#fff;
+                font-weight: 400;
+                letter-spacing: 0px;
+            }
+            span.titlebutton {
+                font-size:20px;
+                text-transform:uppercase;
+                color:#f0ad4e;
+                font-family:Oswald;
+                letter-spacing: 1px;
+            }
+
     </style>
 
     <style type="cartocss/html" id="stdcss">
@@ -540,29 +606,38 @@
           </div>
       </div>
 
+
       <div id= "button" class="button">
           <ul>
-              <li style="font-size:18px;text-transform:uppercase">Données</li>
-              <li><button id="forage" class="btn btn-primary">Mesures de forages</button></li>
-              <li><button id="affleurement" class="btn btn-primary">Mesures d'affleurements</button></li>
-              <li><button id="synth" class="btn btn-primary">Donnée synthetiques</button></li>
-          </ul>
-          <ul>
-              <li style="font-size:18px;text-transform:uppercase">Simulations</li>
-              <li><button id="real" class="btn btn-primary">Realisation stochastique</button></li>
-              <li><button id="mean" class="btn btn-primary">Moyenne des realisations</button></li>
-              <li><button id="std" class="btn btn-primary">Incertitude</button></li>
+              <li><span class="titlebutton">Données ponctuelles</span></li>
+              <li><span class="highlight">Forages</span> <input id="forage" type="checkbox" checked data-toggle="toggle" data-onstyle="warning"  data-size="small" data-on="active" data-off="inactive" ></li>
+
+              <li> <span class="highlight">Affleurements</span> <input id="affleurement" type="checkbox" checked data-toggle="toggle" data-onstyle="warning" data-size="small" data-on="active" data-off="inactive"></li>
+
+              <li><span class="highlight">Données synthétiques</span><input id="synth" type="checkbox" data-toggle="toggle" data-onstyle="warning" data-size="small" data-on="active" data-off="inactive"></li>
+              <li></li>
               <li></li>
           </ul>
           <ul>
-              <li style="font-size:18px;text-transform:uppercase;">Géologie</li>
-              <li><button id="thermostrati" class="btn btn-primary">Unités thermostrati.</button></li>
-              <li><button id="geology" class="btn btn-primary">Géologie détaillé</button></li>
-              <li><button id="epaisseur" class="btn btn-primary">Epaisseur dépôts meubles</button></li>
+              <li><span class="titlebutton">Couches géologiques</span></li>
+              <li><span class="highlight">Unitées thermostratigraphiques</span><input id="thermostrati" type="checkbox" data-toggle="toggle" data-onstyle="warning" data-size="small" data-on="active" data-off="inactive"></li>
+              <li><span class="highlight">Géologie</span><input id="geology" type="checkbox" data-toggle="toggle" data-onstyle="warning" data-size="small" data-on="active" data-off="inactive"></li>
+              <li><span class="highlight">Épaisseur des dépôts meubles</span><input id="epaisseur" type="checkbox" data-toggle="toggle" data-onstyle="warning" data-size="small" data-on="active" data-off="inactive"></li>
+              <li></li>
+              <li></li>
+          </ul>
+          <ul>
+              <li><span class="titlebutton">Conductivité thermique</span</li>
+
+              <li><span class="highlight">Réalisation stochastique</span><input id="real" type="checkbox" data-toggle="toggle" data-onstyle="warning" data-size="small" data-on="active" data-off="inactive"></li>
+              <li><span class="highlight">Moyenne des réalisations</span><input id="mean" type="checkbox" data-toggle="toggle" data-onstyle="warning" data-size="small" data-on="active" data-off="inactive"></li>
+              <li><span class="highlight">Incertitude</span><input id="std" type="checkbox" data-toggle="toggle" data-onstyle="warning" data-size="small" data-on="active" data-off="inactive"></li>
+              <li></li>
           </ul>
           <ul>
               <li></li>
-              <li style="font-size:12px;"><div id="slider-range-min"></div></li>
+              <!-- <li style="font-size:12px;"><div id="slider-range-min"></div></li> -->
+              <li><div id="slider-default" class="slider-info"></div></li>
           </ul>
       </div>
 
@@ -668,7 +743,21 @@
       <script src="http://libs.cartocdn.com/cartodb.js/v3/3.15/cartodb.js" type="text/javascript"></script>
       <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
       <script src="http://code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
-      <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+      <!-- <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> -->
+      <!-- Bootstrap Core JavaScript -->
+      <script src="assets/js/jquery-1.10.2.js" type="text/javascript"></script>
+  	  <script src="assets/js/jquery-ui-1.10.4.custom.min.js" type="text/javascript"></script>
+
+      <script src="js/bootstrap.js" type="text/javascript"></script>
+
+     	<!--  Plugins -->
+ 	  <script src="assets/js/ct-paper-checkbox.js"></script>
+  	  <script src="assets/js/ct-paper-radio.js"></script>
+  	  <script src="assets/js/bootstrap-select.js"></script>
+      <script src="assets/js/bootstrap-datepicker.js"></script>
+  	  <script src="assets/js/ct-paper.js"></script>
+      <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.0/js/bootstrap-toggle.min.js"></script>
+
       <!-- Place your code in the script tags below -->
 
       <script type="text/javascript">
@@ -816,53 +905,84 @@
               layer.setOpacity(op);
 
               $(function() {
-                  $( "#slider-range-min" ).slider({
+                  $( "#slider-default" ).slider({
                       range: "min",
                       value: 50,
                       min: 0,
                       max: 100,
                       slide: function( event, ui ) {
                           $( "#amount" ).val(ui.value + "%" );
-                          op = $( "#slider-range-min" ).slider( "value" ) / 100;
+                          op = $( "#slider-default" ).slider( "value" ) / 100;
                           layer.setOpacity(op);
                       }
                   });
-                  $( "#amount" ).val( $( "#slider-range-min" ).slider( "value" ) + "%");
+                  $( "#amount" ).val( $( "#slider-default" ).slider( "value" ) + "%");
               });
 
-              var sublayer0Shown = true;
-              $("#thermostrati").on('click', function() {
+            //   var sublayer0Shown = true;
+            //   $("#thermostrati").on('click', function() {
+            //       if (sublayer0Shown) {
+            //           sublayers[0].show();
+            //           sublayers[1].hide();
+            //           sublayers[2].hide();
+            //           // $(Legend_thermostrati.render().el).show()
+            //           $('#map').append(Legend_thermostrati.render().el);
+            //           $(Legend_std.render().el).hide()
+            //           $(Legend_simu.render().el).hide()
+            //           $(Legend_geology.render().el).hide()
+            //           $(Legend_epaisseur.render().el).hide()
+            //           $(Legend_thermostrati.render().el).show()
+              //
+            //           cartodb.vis.Vis.addInfowindow(map, sublayers[0], ['unite_stra'],{
+            //               infowindowTemplate: $('#infowindow_thermostrati').html(),
+            //               templateType: 'mustache'
+            //           });
+              //
+            //       } else {
+            //           sublayers[0].hide();
+            //           $(Legend_thermostrati.render().el).hide()
+            //           $(Legend_std.render().el).hide()
+            //           $(Legend_simu.render().el).hide()
+            //           $(Legend_geology.render().el).hide()
+            //           $(Legend_epaisseur.render().el).hide()
+            //           $(Legend_thermostrati.render().el).hide()
+            //       }
+            //       sublayer0Shown = !sublayer0Shown;
+            //   });
+
+            $(function() {
+                var sublayer0Shown = true;
+              $('#thermostrati').change(function() {
                   if (sublayer0Shown) {
-                      sublayers[0].show();
-                      sublayers[1].hide();
-                      sublayers[2].hide();
-                      // $(Legend_thermostrati.render().el).show()
-                      $('#map').append(Legend_thermostrati.render().el);
-                      $(Legend_std.render().el).hide()
-                      $(Legend_simu.render().el).hide()
-                      $(Legend_geology.render().el).hide()
-                      $(Legend_epaisseur.render().el).hide()
-                      $(Legend_thermostrati.render().el).show()
-
-                      cartodb.vis.Vis.addInfowindow(map, sublayers[0], ['unite_stra'],{
-                          infowindowTemplate: $('#infowindow_thermostrati').html(),
-                          templateType: 'mustache'
-                      });
-
-                  } else {
-                      sublayers[0].hide();
-                      $(Legend_thermostrati.render().el).hide()
-                      $(Legend_std.render().el).hide()
-                      $(Legend_simu.render().el).hide()
-                      $(Legend_geology.render().el).hide()
-                      $(Legend_epaisseur.render().el).hide()
-                      $(Legend_thermostrati.render().el).hide()
-                  }
+                  sublayers[0].show();
+                  sublayers[1].hide();
+                  sublayers[2].hide();
+                  // $(Legend_thermostrati.render().el).show()
+                  $('#map').append(Legend_thermostrati.render().el);                        $(Legend_std.render().el).hide()
+                  $(Legend_simu.render().el).hide()
+                  $(Legend_geology.render().el).hide()
+                  $(Legend_epaisseur.render().el).hide()
+                  $(Legend_thermostrati.render().el).show()
+                  cartodb.vis.Vis.addInfowindow(map, sublayers[0], ['unite_stra'],{
+                      infowindowTemplate: $('#infowindow_thermostrati').html(),
+                      templateType: 'mustache'
+                    })
+                } else {
+                  sublayers[0].hide();
+                  $(Legend_thermostrati.render().el).hide()
+                  $(Legend_std.render().el).hide()
+                  $(Legend_simu.render().el).hide()
+                  $(Legend_geology.render().el).hide()
+                  $(Legend_epaisseur.render().el).hide()
+                  $(Legend_thermostrati.render().el).hide()
+                 }
                   sublayer0Shown = !sublayer0Shown;
-              });
+            })
+        });
 
+            $(function() {
               var sublayer1Shown = true;
-              $("#geology").on('click', function() {
+              $('#geology').change(function() {
                   if (sublayer1Shown) {
                       sublayers[1].show();
                       sublayers[0].hide();
@@ -887,10 +1007,12 @@
                       // $(Legend_geology.render().el).hide()
                   }
                   sublayer1Shown = !sublayer1Shown;
-              });
-              var sublayer2Shown = true;
-              $("#epaisseur").on('click', function() {
+              })
+          });
 
+            $(function() {
+              var sublayer2Shown = true;
+              $('#epaisseur').change(function() {
                   if (sublayer2Shown) {
                       sublayers[2].show();
                       sublayers[0].hide();
@@ -914,10 +1036,12 @@
                       $(Legend_epaisseur.render().el).hide()
                   }
                   sublayer2Shown = !sublayer2Shown;
-              });
+              })
+          });
 
+          $(function() {
               var sublayer3Shown = true;
-              $("#real").on('click', function() {
+              $('#real').change(function() {
 
                   if (sublayer3Shown) {
                       sublayers[3].show();
@@ -949,10 +1073,12 @@
                       // $(Legend_simu.render().el).hide()
                   }
                   sublayer3Shown = !sublayer3Shown;
-              });
+              })
+          });
 
+          $(function() {
               var sublayer4Shown = true;
-              $("#mean").on('click', function() {
+              $('#mean').change(function() {
 
                   if (sublayer4Shown) {
                       sublayers[4].show();
@@ -982,10 +1108,12 @@
                       $(Legend_epaisseur.render().el).hide()
                   }
                   sublayer4Shown = !sublayer4Shown;
-              });
-              var sublayer5Shown = true;
-              $("#std").on('click', function() {
+              })
+          });
 
+          $(function() {
+              var sublayer5Shown = true;
+              $('#std').change(function() {
                   if (sublayer5Shown) {
                       sublayers[5].show();
                       sublayers[4].hide();
@@ -1015,28 +1143,36 @@
                       // $(Legend_std.render().el).hide()
                   }
                   sublayer5Shown = !sublayer5Shown;
-              });
+              })
+          });
+
+          $(function() {
               var sublayer6Shown = false;
-              $("#affleurement").on('click', function() {
+              $('#affleurement').change(function() {
                   if (sublayer6Shown) {
                       sublayers[6].show();
                   } else {
                       sublayers[6].hide();
                   }
                   sublayer6Shown = !sublayer6Shown;
-              });
+              })
+          });
+
+          $(function() {
               var sublayer7Shown = false;
-              $("#forage").on('click', function() {
+              $('#forage').change(function() {
                   if (sublayer7Shown) {
                       sublayers[7].show();
                   } else {
                       sublayers[7].hide();
                   }
                   sublayer7Shown = !sublayer7Shown;
-              });
-              var sublayer8Shown = true;
-              $("#synth").on('click', function() {
+              })
+          });
 
+          $(function() {
+              var sublayer8Shown = true;
+              $('#synth').change(function() {
                   if (sublayer8Shown) {
                       sublayers[8].show();
                       layer.leafletMap.viz.addOverlay({
@@ -1052,8 +1188,8 @@
                       sublayers[8].hide();
                   }
                   sublayer8Shown = !sublayer8Shown;
-              });
-
+              })
+          });
 
               var searchBox = cdb.vis.Overlay.create('search', map.viz, {});
               searchBox.show();
