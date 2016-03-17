@@ -1,8 +1,11 @@
 <!DOCTYPE html>
-<html>
-  <head>
-
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+<html lang="en">
+  <head profile="http://www.w3.org/2005/10/profile">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <!-- <meta name="viewport" content="initial-scale=1.0, user-scalable=no" /> -->
     <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
     <link rel="shortcut icon" href="http://cartodb.com/assets/favicon.ico" />
 
@@ -11,6 +14,8 @@
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <link rel="stylesheet" href="http://jqueryui.com/resources/demos/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -22,304 +27,183 @@
 
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Oswald:400,700' rel='stylesheet' type='text/css'>
+
+    <!-- <link rel="icon" type="image/png" href="./favicon.png"> -->
     <style>
-            html, body, #map {
-                height: 100%;
-                padding: 0;
-                margin: 0;
-            }
-            #map .cartodb-legend{
-                position: absolute;
-                left: 50px;
-                width: 300px;
-            }
+      html, body, #container {
+        height: 100%;
+        width: 100%;
+        overflow: hidden;
+      }
 
-            .cartodb-logo{
-               display:none!important;
-            }
+      body {
+        padding-top: 50px;
+      }
 
-            #button{
-                position: absolute;
-                top:200px;
-                right:20px;
-                text-align: right;
-                width:370px;
-                background-color: #404040;
-                border-radius: 10px;
-                padding: 10px 10px 10px 10px;
-            }
-            .button > p {
-                width:250px;
-                color: #fff;
-                /*left:300px;*/
-                text-align: right;
-            }
+      #map {
+        width: auto;
+        height: 100%;
+        box-shadow: 0 0 10px rgba(0,0,0,0.55);
+      }
 
-            .button ul {
-                padding: 0;
-                margin: 0;
-                list-style-type: none;
-                bottom: 36px;
-                border-radius: 4px;
-                width:330px;
-            }
-            .button li {
-                padding: 4px;
-                font-size: 16px;
-                font: 'Roboto';
-                color: #fff;
-                cursor: pointer;
-                width: 350px;
-            }
+      #sidebar {
+        width: 320px;
+        height: 100%;
+        max-width: 100%;
+        float: left;
+        text-align: left;
+        padding: 10px 10px 10px 10px;
+        -webkit-transition: all 0.25s ease-out;
+        -moz-transition: all 0.25s ease-out;
+        transition: all 0.25s ease-out;
+      }
 
-            .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open .dropdown-toggle.btn-primary {
+      .sidebar ul {
+          padding-left: 0px;
+          margin-left: 0px;
+          list-style-type: none;
+          bottom: 36px;
+          border-radius: 4px;
+          /*width:285px;*/
 
-                background-color: #995C5C;
-                border-color: #995C5C;
-                color:#FFF;
-                font: 400 14px/20px 'Roboto';
-            }
-            .btn:focus,.btn:active {
-               outline: none !important;
-            }
+      }
+      .sidebar ol {
+          list-style:none;
+          padding-left:0;
+          padding-left: 0px;
+          margin-left: 0px;
+          list-style-position: inside;
+      }
 
-            .btn
-            {
-                /*background-color: #404040;*/
-                /*border-color: #404040;*/
-                color:#FFF;
-                font: 400 14px/20px 'Roboto';
-            }
-            #cartocss {
-                position: absolute;
-                bottom: 300px;
-                right: 20px;
-            }
+      .sidebar li {
+          padding-left: 0px;
+          margin-left: 0px;
+          list-style-type: none;
+          /*padding: 4px;*/
+          font-size: 16px;
+          font: 'Roboto';
+          color: #fff;
+          cursor: pointer;
+          /*width: 285px;*/
+      }
 
-            #sql {
-                position: absolute;
-                top: 20px;
-                right: 292px;
-                wdth: 500px;
-            }
+      .navbar .navbar-brand {
+        font-weight: bold;
+        font-size: 25px;
+        color: #FFFFFF;
+      }
 
-            .layer_selector {
-                background: #fff;
-                border-radius: 4px;
-                padding: 0;
-                border: 1px solid #999999;
-                width: 248px;
-                height: 225px;
-                box-shadow: rgba(0, 0, 0, 0.2) 0 0 4px 2px;
-                font: 11px 'Helvetica';
-                position: absolute;
-                right: 20px;
-                top: 350px;
-            }
+      .navbar {
+        background-image: linear-gradient(to bottom, #2b6988 0%, #1f4b61 100%);
+      }
 
-            .layer_selector > p {
-                font: 900 16px/1 'Roboto';
-                font-weight: bold;
-                color: #666666;
-                padding: 14px 14px 12px 14px;
-                cursor: pointer;
-                border-bottom: 1px solid #999;
-            }
+      .navbar-inverse .navbar-nav>li>a {
+        color: #fff;
+      }
+      .slider-info .ui-widget-header {
+          background-color: #bad39c;
+      }
 
-            .layer_selector ul {
-                padding: 0;
-                margin: 0;
-                list-style-type: none;
-                bottom: 36px;
-                border-radius: 4px;
-            }
-            .layer_selector li {
-                padding: 14px;
-                font: 400 14px/1 'Roboto';
-                /*font-size: 11px;*/
-                color: #666666;
-                cursor: pointer;
-            }
-            .layer_selector li:not(:last-child) {
-                border-bottom: 1px solid #999;
-            }
-            .layer_selector li:hover {
-                background-color: #e5e5e5;
-                cursor: pointer;
-            }
-            .layer_selector li.sql_selected,
-            .layer_selector li.cartocss_selected {
-                background-color: #A6CEE3;
-            }
-            div.cartodb-legend-stack {
-                bottom: 30px;
-                right: 30px;
-            }
-            #textbox {
-                position: absolute;
-                top: 130px;
-                color: rgba(255, 255, 255, 0.9);
-                text-align: justify;
-                font: 400 18px/20px 'Roboto';
-                left: 100px;
-                right: 500px;
-            }
+      .ui-widget-content {
+          background-color: #E5E5E5;
+      }
+      .ui-widget {
+          font-size: 1.1em;
+      }
+      .ui-slider-horizontal {
+          height: 8px;
+      }
+      .ui-slider {
+          border-radius: 3px;
+          position: relative;
+          text-align: left;
+      }
+      ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
+          background: white;
+          background: -moz-linear-gradient(top, white 0%, #f1f1f2 100%);
+          background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(100%, #f1f1f2));
+          background: -webkit-linear-gradient(top, white 0%, #f1f1f2 100%);
+          background: -o-linear-gradient(top, white 0%, #f1f1f2 100%);
+          background: -ms-linear-gradient(top, white 0%, #f1f1f2 100%);
+          background: linear-gradient(to bottom, white 0%, #f1f1f2 100%);
+          filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f1f1f2',GradientType=0 );
+          border-radius: 50%;
+          box-shadow: 0 1px 1px #FFFFFF inset, 0 1px 2px rgba(0, 0, 0, 0.4);
+          height: 15px;
+          width: 15px;
+          cursor: pointer;
+      }
+      .ui-widget-header {
+          background: #f0ad4e;
+      }
 
-            .span {
-                font-size: 13px;
-            }
+      span.highlight {
+          /*background-color: #404040;*/
+          /*border-radius:5px;*/
+          /*padding: 5px 15px 5px 15px;*/
+          color:#404040;
+          font-weight: 400;
+          letter-spacing: 0px;
+          font: 400 14px/16px 'Roboto';
+      }
+      span.titlebutton {
+          font-size:20px;
+          text-transform:uppercase;
+          color:#f0ad4e;
+          font-family:Oswald;
+          letter-spacing: 1px;
+      }
+      ul, menu, dir {
+    display: block;
+    list-style-type: none;
+    -webkit-margin-before: 1em;
+    -webkit-margin-after: 1em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    -webkit-padding-start: 40px;
+}
 
-            .title-inner {
-                position: absolute;
-                top: 40px;
-                right: 60px;
-                left: 100px;
-                text-align: left;
-            }
-            .title {
-                position: relative;
-                font:900 40px/1 'Roboto';
-                color: #fff;
-                z-index: 2;
-                letter-spacing: 3px;
-                display: inline-block;
-            }
-            .title:after {
-                content:"";
-                position: absolute;
-                width: 50px;
-                height: 0px;
-                background: #fff;
-                top: 50%;
-                left: -70px;
-            }
-            .title:before {
-                content:"";
-                position: absolute;
-                width: 50px;
-                height: 0 px;
-                background: #fff;
-                top: 50%;
-                right: -70px;
-            }
-            .leaflet-left .leaflet-control {
-                margin-left: 30px;
-                margin-top: 30px;
-            }
-            @media (max-width: 1200px) {
-                #textbox {
-                    left: 80px;
-                    right: 80px;
-                }
-            }
-            @media (max-width: 800px) {
-                .layer_selector {
-                    right: auto;
-                    bottom: 30px;
-                    left: 30px;
-                }
-                .leaflet-control-container {
-                    display: none !important;
-                }
-                .header {
-                    position: absolute;
-                    background: #333;
-                    padding: 25px;
-                    top: 0;
-                    right: 0;
-                    left: 0;
-                }
+.modal-backdrop {
+    z-index: 1020;
+}
 
-                .title-inner {
-                    position: static;
-                }
-                .title {
-                    font: 900 20px/1 'Roboto';
-                    margin-bottom: 10px;
-                }
-                #textbox {
-                    position: static;
-                    font: 400 12px/18px 'Roboto';
-                }
-                .layer_selector ul {
-                    height: 0;
-                    opacity: 0;
-                }
-                .layer_selector > p {
-                    border-bottom: 0;
-                    background: url(../Crime_Map/show.png) no-repeat 220px 15px;
-                }
-                .layer_selector.is-active > p {
-                    border-bottom: 0;
-                    background: url(../Crime_Map/hide.png) no-repeat 220px 15px;
-                }
-                .layer_selector.is-active ul {
-                    height: auto;
-                    opacity: 1;
-                }
-                .layer_selector.is-active > p {
-                    border-bottom: 1px solid #999;
-                }
-            }
-            @media (max-width: 600px) {
-                .layer_selector {
-                    right: 30px;
-                    bottom: 140px;
-                    left: auto;
-                }
-            }
-            .slider-info .ui-widget-header {
-                background-color: #f0ad4e;
-            }
+.navbar {
+    background-image: linear-gradient(to bottom, #a2c17b 0%, #bad39c 100%);
+}
 
-            .ui-widget-content {
-                background-color: #E5E5E5;
-            }
-            .ui-widget {
-                font-size: 1.1em;
-            }
-            .ui-slider-horizontal {
-                height: 8px;
-            }
-            .ui-slider {
-                border-radius: 3px;
-                position: relative;
-                text-align: left;
-            }
-            ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
-                background: white;
-                background: -moz-linear-gradient(top, white 0%, #f1f1f2 100%);
-                background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(100%, #f1f1f2));
-                background: -webkit-linear-gradient(top, white 0%, #f1f1f2 100%);
-                background: -o-linear-gradient(top, white 0%, #f1f1f2 100%);
-                background: -ms-linear-gradient(top, white 0%, #f1f1f2 100%);
-                background: linear-gradient(to bottom, white 0%, #f1f1f2 100%);
-                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f1f1f2',GradientType=0 );
-                border-radius: 50%;
-                box-shadow: 0 1px 1px #FFFFFF inset, 0 1px 2px rgba(0, 0, 0, 0.4);
-                height: 15px;
-                width: 15px;
-                cursor: pointer;
-            }
-            .ui-widget-header {
-                background: #f0ad4e;
-            }
+.navbar-inverse .navbar-nav>li>a  {
+    color: #000;
+}
+.navbar .navbar-brand {
+    font-weight: bold;
+    font-size: 25px;
+    color: #000;
+}
+.navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus {
+    color: #fff;
+    background-color: #000;
+}
 
-            span.highlight {
-                background-color: #404040;
-                border-radius:5px;
-                padding: 5px 15px 5px 15px;
-                color:#fff;
-                font-weight: 400;
-                letter-spacing: 0px;
-            }
-            span.titlebutton {
-                font-size:20px;
-                text-transform:uppercase;
-                color:#f0ad4e;
-                font-family:Oswald;
-                letter-spacing: 1px;
-            }
+.navbar-inverse .navbar-nav > li > a:hover, .navbar-inverse .navbar-nav > li > a:focus {
+    color: #fff;
+    background-color: transparent;
+}
+
+ul, menu, dir {
+    display: block;
+    list-style-type: none;
+    -webkit-margin-before: 1em;
+    -webkit-margin-after: 1em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    -webkit-padding-start: 0px;
+}
+
+ul, ol {
+    margin-top: 0;
+    margin-bottom: 10px;
+    padding-left: 20px;
+}
 
     </style>
 
@@ -592,619 +476,779 @@
         }
     </style>
 
+    <style type="cartocss/html" id="geolsurfacecss">
+
+    /** category visualization */
+
+    #geol_surface {
+       polygon-opacity: 0.7;
+       line-color: #000000;
+       line-width: 0.2;
+       line-opacity: 1;
+    }
+
+    #geol_surface[legende="1"] {
+       polygon-fill: #229A00;
+    }
+    #geol_surface[legende="2"] {
+       polygon-fill: #b2df8a;
+    }
+    #geol_surface[legende="3"] {
+       polygon-fill: #B2DF8A;
+    }
+    #geol_surface[legende="4"] {
+       polygon-fill: #5CA2D1;
+    }
+    #geol_surface[legende="5"] {
+       polygon-fill: #2167AB;
+    }
+    #geol_surface[legende="6"] {
+       polygon-fill: #FFCC00;
+    }
+    #geol_surface[legende="7"] {
+       polygon-fill: #FF9900;
+    }
+    #geol_surface[legende="8"] {
+       polygon-fill: #2167AB;
+    }
+    </style>
+
   </head>
 
+
   <body>
-      <div id="map"></div>
-      <div class="header">
-          <div class="title-inner">
-              <h1 style="text-transform:uppercase;" class="title">Conductivité thermique</h1>
+
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <div class="navbar-icon-container">
+            <a href="#" class="navbar-icon pull-right visible-xs" id="nav-btn"><i class="fa fa-bars fa-lg white"></i></a>
+            <a href="#" class="navbar-icon pull-right visible-xs" id="sidebar-toggle-btn"><i class="fa fa-search fa-lg white"></i></a>
           </div>
-          <div id="textbox">
-              <p>Carte des conductivités thermiques au niveau du roc dans la communauté métropolitaine de Montréal.</p>
-              <!-- <p style="font-size:16px;">Carte géologiques d'après Globensky (1987) et carte des unitées thermostratigraphiques d'après Sirois (2014).</p> -->
+          <a class="navbar-brand" href="#">ThermCondMap</a>
+        </div>
+        <div class="navbar-collapse collapse">
+              <!-- <form class="navbar-form navbar-right" role="search">
+                <div class="form-group has-feedback">
+                    <span class="twitter-typeahead" style="position: static; display: block; direction: ltr;"><input id="searchbox" type="text" placeholder="Search" class="form-control tt-input" autocomplete="off" spellcheck="false" dir="auto" style="position: relative; vertical-align: top;"><pre aria-hidden="true" style="position: absolute; visibility: hidden; white-space: pre; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; font-style: normal; font-variant: normal; font-weight: 400; word-spacing: 0px; letter-spacing: 0px; text-indent: 0px; text-rendering: auto; text-transform: none;"></pre><span class="tt-dropdown-menu" style="position: absolute; top: 100%; left: 0px; z-index: 100; display: none; right: auto;">
+                <div class="tt-dataset-Boroughs"></div><div class="tt-dataset-Theaters"></div><div class="tt-dataset-Museums"></div><div class="tt-dataset-GeoNames"></div></span></span>
+                    <span id="searchicon" class="fa fa-search form-control-feedback"></span>
+                </div>
+              </form> -->
+          <ul class="nav navbar-nav">
+            <li><a href="#" data-toggle="modal" data-target="#myModal" id="about-btn"><i class="fa fa-question-circle white"></i>&nbsp;&nbsp;À propos</a></li>
+
+            <li class="dropdown">
+              <a id="toolsDrop" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-dot-circle-o"></i>&nbsp;&nbsp;Mesures <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" id="forage">&nbsp;&nbsp;Forages</a></li>
+                <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" id="affleurement">&nbsp;&nbsp;Affleurements</a></li>
+                <li class="divider hidden-xs"></li>
+                <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" id="synth">&nbsp;&nbsp;Données synthétiques</a></li>
+              </ul>
+            </li>
+
+            <li class="dropdown">
+              <a id="toolsDrop" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-globe white"></i>&nbsp;&nbsp;Couches géologiques <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" id="geology"></i>&nbsp;&nbsp;Géologie</a></li>
+                <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" id="geologysurf"></i>&nbsp;&nbsp;Géologie de surface</a></li>
+                <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" id="thermostrati">&nbsp;&nbsp;Unités thermostratigraphiques</a></li>
+                <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" id="epaisseur">&nbsp;&nbsp;Épaisseur dépôts meubles</a></li>
+              </ul>
+            </li>
+
+            <li class="dropdown">
+              <a id="toolsDrop" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-bar-chart"></i>&nbsp;&nbsp;Conductivité thermique <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" id="real"></i>&nbsp;&nbsp;Réalisation stochastique</a></li>
+                <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" id="mean">&nbsp;&nbsp;Moyenne des simulations</a></li>
+                <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" id="std">&nbsp;&nbsp;Incertitude</a></li>
+              </ul>
+            </li>
+            <li></li>
+          </ul>
+      </div><!--/.navbar-collapse -->
+
+      <!-- Modal -->
+      <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="myModalLabel">À propos de ThermCondMap</h4>
+            </div>
+            <div class="modal-body" style="text-align:justify">
+              ThermCondMap est une application permettant d'explorer le potentiel géothermique dans la région de la communauté métropolitaine de Montréal.
+              L'application a été développée conjointement entre l'<a href="http://www.ete.inrs.ca/ete/">INRS</a> et  <a href="http://www.marmottenergies.com/en/">Marmott Énergies Inc.</a> dans le cadre d'un projet SEP CRSNG.
+              <br>
+              <br>
+              Auteur:  L. Perozzi
+            </div>
+            <!-- <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div> -->
           </div>
-      </div>
-
-
-      <div id= "button" class="button">
-          <ul>
-              <li><span class="titlebutton">Données ponctuelles</span></li>
-              <li><span class="highlight">Forages</span> <input id="forage" type="checkbox" checked data-toggle="toggle" data-onstyle="warning"  data-size="small" data-on="active" data-off="inactive" ></li>
-
-              <li> <span class="highlight">Affleurements</span> <input id="affleurement" type="checkbox" checked data-toggle="toggle" data-onstyle="warning" data-size="small" data-on="active" data-off="inactive"></li>
-
-              <li><span class="highlight">Données synthétiques</span><input id="synth" type="checkbox" data-toggle="toggle" data-onstyle="warning" data-size="small" data-on="active" data-off="inactive"></li>
-              <li></li>
-              <li></li>
-          </ul>
-          <ul>
-              <li><span class="titlebutton">Couches géologiques</span></li>
-              <li><span class="highlight">Unitées thermostratigraphiques</span><input id="thermostrati" type="checkbox" data-toggle="toggle" data-onstyle="warning" data-size="small" data-on="active" data-off="inactive"></li>
-              <li><span class="highlight">Géologie</span><input id="geology" type="checkbox" data-toggle="toggle" data-onstyle="warning" data-size="small" data-on="active" data-off="inactive"></li>
-              <li><span class="highlight">Épaisseur des dépôts meubles</span><input id="epaisseur" type="checkbox" data-toggle="toggle" data-onstyle="warning" data-size="small" data-on="active" data-off="inactive"></li>
-              <li></li>
-              <li></li>
-          </ul>
-          <ul>
-              <li><span class="titlebutton">Conductivité thermique</span</li>
-
-              <li><span class="highlight">Réalisation stochastique</span><input id="real" type="checkbox" data-toggle="toggle" data-onstyle="warning" data-size="small" data-on="active" data-off="inactive"></li>
-              <li><span class="highlight">Moyenne des réalisations</span><input id="mean" type="checkbox" data-toggle="toggle" data-onstyle="warning" data-size="small" data-on="active" data-off="inactive"></li>
-              <li><span class="highlight">Incertitude</span><input id="std" type="checkbox" data-toggle="toggle" data-onstyle="warning" data-size="small" data-on="active" data-off="inactive"></li>
-              <li></li>
-          </ul>
-          <ul>
-              <li></li>
-              <!-- <li style="font-size:12px;"><div id="slider-range-min"></div></li> -->
-              <li><div id="slider-default" class="slider-info"></div></li>
-          </ul>
-      </div>
-
-      <script id='infowindow_mesures' type="infowindow/html">
-      <div class="cartodb-tooltip-content-wrapper dark">
-        <div class="cartodb-tooltip-content">
-          <h4 style="text-transform:none;font-size:14px">Conductivité thermique (W/mK)</h4>
-          <p>{{cond}}</p>
         </div>
       </div>
-      </script>
 
-      <script id='infowindow_r3' type="infowindow/html">
-      <div class="cartodb-tooltip-content-wrapper dark">
-        <div class="cartodb-tooltip-content">
-          <h4 style="text-transform:none;font-size:14px">Conductivité thermique simulé  pour une réalisation (W/mK) </h4>
-          <p>{{r3}}</p>
-        </div>
+
+
+
+
+
       </div>
-      </script>
+    </div>
 
-      <script id='infowindow_mean' type="infowindow/html">
-      <div class="cartodb-tooltip-content-wrapper dark">
-        <div class="cartodb-tooltip-content">
-          <h4 style="text-transform:none;font-size:14px">Conductivité thermique simulé moyenne (W/mK)</h4>
-          <p>{{mean}}</p>
-        </div>
+    <div id="container">
+      <div id="sidebar">
+          <ul>
+              <li></li>
+              <!-- <li style="text-align:left"><div id="slider-default" class="slider-info"></div>&nbsp;&nbsp;</li> -->
+          </ul>
+          <ul>
+              <li style="text-align:left;margin-left:-25px;"><div id="slider-default" class="slider-info"></div>&nbsp;&nbsp;</li>
+
+          </ul>
+          <ul>
+              <li style="font-size:18px;font-family:'Oswald';text-align:left;letter-spacing:0px;margin-left:-10px;">Estimation de la conductivité thermique pour la longueur du forage</li>
+          </ul>
+          <ol>
+              <li>Chercher la zone d'intérêt à l'aide du champ de recherche <i class="fa fa-search"></i></li>
+              <li>Investiguer l'épaisseur des dépôts meubles dans l'onglet <a class="btn btn-default btn-xs" href="#" role="button"><i class="fa fa-globe white"></i>&nbsp;&nbsp;Couches géologiques) <b class="caret"></b></a></li>
+              <li>Investiguer la nature géologique des dépôts meubles dans l'onglet <a class="btn btn-default btn-xs" href="#" role="button"><i class="fa fa-globe white"></i>&nbsp;&nbsp;Couches géologiques) <b class="caret"></b></a></li>
+              <li>Assigner une valeur de conductivité thermique selon le type de dépôt</li>
+              <li>Investiguer la valeur de conductivité thermique au niveau du roc pour la région d'intérêt en utilisant les cartes des simulations géostatistiques dans l'onglet <a class="btn btn-default btn-xs" href="#" role="button"><i class="fa fa-bar-chart"></i>&nbsp;&nbsp;Conductivité thermique) <b class="caret"></b></a></li>
+              <li>Calculer la valeur de conductivité thermique moyenne \(\lambda\) selon la formule suivante: <br> <br>
+ \(\lambda\) = \(\lambda\)<sub>DM</sub> . \(\cfrac{e_{DM}}{L_{forage}}\)  + \(\lambda\)<sub>ROC</sub> . \(\cfrac{e_{ROC}}{L_{forage}}\) <br> <br> où  \(e\) représente l'épaisseur, \(L_{forage}\) la longueur du forage et <sub>DM</sub> les dépôts meubles. </li>
+          </ol>
+
       </div>
-      </script>
-
-      <script id='infowindow_std' type="infowindow/html">
-      <div class="cartodb-tooltip-content-wrapper dark">
-        <div class="cartodb-tooltip-content">
-          <h4 style="text-transform:none;font-size:14px">Écart-type des simulations</h4>
-          <p>{{std}}</p>
-        </div>
+      <div id="map">
       </div>
-      </script>
+
+    </div><!-- /.container -->
 
 
-      <script type="infowindow/html" id="infowindow_geology">
-        <div class="cartodb-popup v2">
+
+    <script id='infowindow_mesures' type="infowindow/html">
+    <div class="cartodb-tooltip-content-wrapper dark">
+      <div class="cartodb-tooltip-content">
+        <h4 style="text-transform:none;font-size:14px">Conductivité thermique (W/mK)</h4>
+        <p>{{cond}}</p>
+      </div>
+    </div>
+    </script>
+
+    <script id='infowindow_r3' type="infowindow/html">
+    <div class="cartodb-tooltip-content-wrapper dark">
+      <div class="cartodb-tooltip-content">
+        <h4 style="text-transform:none;font-size:14px">Conductivité thermique simulée (W/mK) </h4>
+        <p>{{r3}}</p>
+      </div>
+    </div>
+    </script>
+
+    <script id='infowindow_mean' type="infowindow/html">
+    <div class="cartodb-tooltip-content-wrapper dark">
+      <div class="cartodb-tooltip-content">
+        <h4 style="text-transform:none;font-size:14px">Conductivité thermique simulée  (W/mK)</h4>
+        <p>{{mean}}</p>
+      </div>
+    </div>
+    </script>
+
+    <script id='infowindow_std' type="infowindow/html">
+    <div class="cartodb-tooltip-content-wrapper dark">
+      <div class="cartodb-tooltip-content">
+        <h4 style="text-transform:none;font-size:14px">Écart-type des simulations</h4>
+        <p>{{std}}</p>
+      </div>
+    </div>
+    </script>
+
+
+    <script type="infowindow/html" id="infowindow_geology">
+      <div class="cartodb-popup v2">
+      <a href="#close" class="cartodb-popup-close-button close">x</a>
+         <div class="cartodb-popup-content-wrapper">
+           <div class="cartodb-popup-content">
+             <h4 style="text-transform:none;font-size:14px;color:#404040">Géologie</h4>
+             <p style="text-transform:none;font-size:14px;color:#000">{{formation}}</p>
+           </div>
+         </div>
+         <div class="cartodb-popup-tip-container"></div>
+      </div>
+    </script>
+
+    <script type="infowindow/html" id="infowindow_geology">
+      <div class="cartodb-popup v2">
         <a href="#close" class="cartodb-popup-close-button close">x</a>
-           <div class="cartodb-popup-content-wrapper">
-             <div class="cartodb-popup-content">
-               <h4 style="text-transform:none;font-size:14px;color:#404040">Géologie</h4>
-               <p style="text-transform:none;font-size:14px;color:#000">{{formation}}</p>
-             </div>
+         <div class="cartodb-popup-content-wrapper">
+           <div class="cartodb-popup-content">
+             <h4 style="text-transform:none;font-size:14px;color:#404040">Géologie </h4>
+             <p style="text-transform:none;font-size:14px;color:#000">{{formation}}</p>
            </div>
-           <div class="cartodb-popup-tip-container"></div>
-        </div>
-      </script>
-
-      <script type="infowindow/html" id="infowindow_geology">
-        <div class="cartodb-popup v2">
-          <a href="#close" class="cartodb-popup-close-button close">x</a>
-           <div class="cartodb-popup-content-wrapper">
-             <div class="cartodb-popup-content">
-               <h4 style="text-transform:none;font-size:14px;color:#404040">Géologie </h4>
-               <p style="text-transform:none;font-size:14px;color:#000">{{formation}}</p>
-             </div>
-           </div>
-           <div class="cartodb-popup-tip-container"></div>
-        </div>
-      </script>
-
-      <script type="infowindow/html" id="infowindow_epaisseur">
-        <div class="cartodb-popup v2">
-          <a href="#close" class="cartodb-popup-close-button close">x</a>
-           <div class="cartodb-popup-content-wrapper">
-             <div class="cartodb-popup-content">
-               <h4 style="text-transform:none;font-size:14px;color:#404040">Epaisseur dépôts meubles </h4>
-               <p style="text-transform:none;font-size:14px;color:#000">{{gridcode}} mètres</p>
-             </div>
-           </div>
-           <div class="cartodb-popup-tip-container"></div>
-        </div>
-      </script>
-
-      <script type="infowindow/html" id="infowindow_synth">
-      <div class="cartodb-tooltip-content-wrapper dark">
-        <div class="cartodb-tooltip-content">
-          <h4 style="text-transform:none;font-size:14px">Conductivité thermique synthétique (W/mK) </h4>
-          <p>{{cond}}</p>
-        </div>
+         </div>
+         <div class="cartodb-popup-tip-container"></div>
       </div>
-      </script>
+    </script>
 
-      <script type="infowindow/html" id="infowindow_thermostrati">
-        <div class="cartodb-popup v2">
-          <a href="#close" class="cartodb-popup-close-button close">x</a>
-           <div class="cartodb-popup-content-wrapper">
-             <div class="cartodb-popup-content">
-               <h4 style="text-transform:none;font-size:14px;color:#404040">Unité thermostratigraphique </h4>
-               <p style="text-transform:none;font-size:14px;color:#000">{{unite_stra}}</p>
-             </div>
+    <script type="infowindow/html" id="infowindow_geologysurf">
+      <div class="cartodb-popup v2">
+        <a href="#close" class="cartodb-popup-close-button close">x</a>
+         <div class="cartodb-popup-content-wrapper">
+           <div class="cartodb-popup-content">
+             <h4 style="text-transform:none;font-size:14px;color:#404040">Géologie de surface</h4>
+             <p style="text-transform:none;font-size:14px;color:#000">{{nom_f}}</p>
            </div>
-           <div class="cartodb-popup-tip-container"></div>
-        </div>
-      </script>
+         </div>
+         <div class="cartodb-popup-tip-container"></div>
+      </div>
+    </script>
 
-      <!-- include cartodb.js library -->
-      <script src="http://libs.cartocdn.com/cartodb.js/v3/3.15/cartodb.js" type="text/javascript"></script>
-      <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
-      <script src="http://code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
-      <!-- <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> -->
-      <!-- Bootstrap Core JavaScript -->
-      <script src="assets/js/jquery-1.10.2.js" type="text/javascript"></script>
-  	  <script src="assets/js/jquery-ui-1.10.4.custom.min.js" type="text/javascript"></script>
+    <script type="infowindow/html" id="infowindow_epaisseur">
+      <div class="cartodb-popup v2">
+        <a href="#close" class="cartodb-popup-close-button close">x</a>
+         <div class="cartodb-popup-content-wrapper">
+           <div class="cartodb-popup-content">
+             <h4 style="text-transform:none;font-size:14px;color:#404040">Épaisseur dépôts meubles </h4>
+             <p style="text-transform:none;font-size:14px;color:#000">{{gridcode}} mètres</p>
+           </div>
+         </div>
+         <div class="cartodb-popup-tip-container"></div>
+      </div>
+    </script>
 
-      <script src="js/bootstrap.js" type="text/javascript"></script>
+    <script type="infowindow/html" id="infowindow_synth">
+    <div class="cartodb-tooltip-content-wrapper dark">
+      <div class="cartodb-tooltip-content">
+        <h4 style="text-transform:none;font-size:14px">Conductivité thermique synthétique (W/mK) </h4>
+        <p>{{cond}}</p>
+      </div>
+    </div>
+    </script>
 
-     	<!--  Plugins -->
- 	  <script src="assets/js/ct-paper-checkbox.js"></script>
-  	  <script src="assets/js/ct-paper-radio.js"></script>
-  	  <script src="assets/js/bootstrap-select.js"></script>
-      <script src="assets/js/bootstrap-datepicker.js"></script>
-  	  <script src="assets/js/ct-paper.js"></script>
-      <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.0/js/bootstrap-toggle.min.js"></script>
+    <script type="infowindow/html" id="infowindow_thermostrati">
+      <div class="cartodb-popup v2">
+        <a href="#close" class="cartodb-popup-close-button close">x</a>
+         <div class="cartodb-popup-content-wrapper">
+           <div class="cartodb-popup-content">
+             <h4 style="text-transform:none;font-size:14px;color:#404040">Unité thermostratigraphique </h4>
+             <p style="text-transform:none;font-size:14px;color:#000">{{unite_stra}}</p>
+           </div>
+         </div>
+         <div class="cartodb-popup-tip-container"></div>
+      </div>
+    </script>
 
-      <!-- Place your code in the script tags below -->
+        <!-- include cartodb.js library -->
+        <script src="http://libs.cartocdn.com/cartodb.js/v3/3.15/cartodb.js" type="text/javascript"></script>
+        <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+        <script src="http://code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
+        <!-- <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> -->
+        <!-- Bootstrap Core JavaScript -->
+        <script src="assets/js/jquery-1.10.2.js" type="text/javascript"></script>
+    	  <script src="assets/js/jquery-ui-1.10.4.custom.min.js" type="text/javascript"></script>
 
-      <script type="text/javascript">
-      var layer;
-      var vector = [];
-      var legend;
+        <script src="js/bootstrap.js" type="text/javascript"></script>
 
-
-      function main() {
-
-          var Legend_simu = new cdb.geo.ui.Legend.Density({
-              title: 'Conductivité thermique simulé (W/mK)',
-              left: "2", right: "4", colors: [ "#3783bb", "#a7d0e4", "#f7f6f6", "#f7b799", "#c94741"]
-          });
-          var Legend_std = new cdb.geo.ui.Legend.Density({
-              title: 'Incertitude',
-              left: "Faible", right: "Élevée", colors: [ "#3783bb", "#a7d0e4", "#f7f6f6", "#f7b799", "#c94741"]
-          });
-          var Legend_geology = new cdb.geo.ui.Legend.Custom({
-              title: "Formations et groupe géologiques",
-              data: [
-                  { name: "Lorraine - Formation de Nicolet ",  value: "#e5d0a9" },
-                  { name: "Shale d'Utica ",  value: "#cba053" },
-                  { name: "Trenton - Formation de Tétrauville ",  value: "#d7e4f9" },
-                  { name: "Trenton - Formation de  Montréal",       value: "#3d99fc" },
-                  { name: "Trenton - Formation de Deschambault",         value: "#aacbfd" },
-                  { name: "Black River",         value: "#44f4f3" },
-                  { name: "Cahzy - Formation de Laval",          value: "#d6ffff" },
-                  { name: "Beekmantown - Formation de Beauharnois",          value: "#eae1fc" },
-                  { name: "Beekmantown - Formation de Theresa",          value: "#fcea91" },
-                  { name: "Postsdam - Formation de Cairnside",          value: "#fdfcb5" },
-                  { name: "Postsdam - Formation de Covey Hill",          value: "#f4d854" }
-              ]
-          });
-          var Legend_thermostrati = new cdb.geo.ui.Legend.Custom({
-              title: "Unité thermostratigraphiques",
-              data: [
-                  { name: "Queenston et Lorraine",  value: "#ffffcc" },
-                  { name: "St. Rosalie et Utica",       value: "#ffeda0" },
-                  { name: "Trenton, Black River, Chazy",         value: "#fed976" },
-                  { name: "Beauharnois",         value: "#feb24c" },
-                  { name: "Theresa",          value: "#fd8d3c" },
-                  { name: "Cairnside et Covey Hill",         value: "#fc4e2a" },
-                  { name: "Appalaches",          value: "#e31a1c" },
-                  { name: "Grenville",         value: "#b10026" }
-
-              ]
-          });
-          var Legend_epaisseur = new cdb.geo.ui.Legend.Density({
-              title: 'Epaisseur dépôts meubles (m)',
-              left: "5", right: "150", colors: [ "#f7fcf0", "#e0f3db", "#ccebc5", "#a8ddb5", "#7bccc4","#4eb3d3","#2b8cbe","#0868ac"]
-          });
-
-          var map = L.map('map', {
-              zoomControl: false,
-              center: [45.558537, -73.712912],
-              zoom: 12
-          });
-
-          // add basemap
-          L.tileLayer('http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png', {attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy; <a href="http://cartodb.com/attributions">CartoDB</a>'}).addTo(map);
-          // add CartoDB layer
-          var sublayers = [];
-          cartodb.createLayer(map, {
-              user_name: 'lperozzi',
-              type: 'cartodb',
-              sublayers: [{
-                  sql: "SELECT * FROM geology",
-                  cartocss: $("#thermostraticss").text()
-              },
-              {
-                  sql: "SELECT * FROM geology",
-                  cartocss: $("#geologycss").text()
-              },
-              {
-                  sql: "SELECT * FROM epaisseur",
-                  cartocss: $("#epaisseurcss").text()
-              },
-              {
-                  sql: "SELECT cartodb_id,the_geom,r3,the_geom_webmercator FROM sgs_grid_2", // Earthquake data
-                  cartocss: $("#r3css").text()
-              },
-              {
-                  sql: "SELECT cartodb_id,the_geom,mean,the_geom_webmercator FROM sgs_grid_2", // Earthquake data
-                  cartocss: $("#meancss").text()
-              },
-              {
-                  sql: "SELECT cartodb_id,the_geom,std,the_geom_webmercator FROM sgs_grid_2", // Earthquake data
-                  cartocss: $("#stdcss").text()
-              },
-              {
-                  sql: "SELECT * FROM marmot_forages_affleurements_copy", // Earthquake data
-                  cartocss: $("#mesurescss").text()
-              },
-              {
-                  sql: "SELECT * FROM marmot_forages_affleurements_copy_1",
-                  cartocss: $("#mesurescss").text()
-              },
-              {
-                  sql: "SELECT * FROM data_synth ", // Earthquake data
-                  cartocss: $("#datasynthscss").text()
-              }]
-          }).addTo(map)
-          .done(function(layer) {
-
-              for (var i = 0; i < layer.getSubLayerCount(); i++) {
-                  sublayers[i] = layer.getSubLayer(i);
-                  // alert("Congrats, you added sublayer #" + i + "!");
-              }
+       	<!--  Plugins -->
+   	  <script src="assets/js/ct-paper-checkbox.js"></script>
+    	  <script src="assets/js/ct-paper-radio.js"></script>
+    	  <script src="assets/js/bootstrap-select.js"></script>
+        <script src="assets/js/bootstrap-datepicker.js"></script>
+    	  <script src="assets/js/ct-paper.js"></script>
+        <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.0/js/bootstrap-toggle.min.js"></script>
+        <script type="text/x-mathjax-config">
+          MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+        </script>
+        <script type="text/javascript" async
+          src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML">
+        </script>
 
 
-              sublayers[0].hide()
-              sublayers[1].hide()
-              sublayers[2].hide()
-              sublayers[3].hide()
-              sublayers[4].hide()
-              sublayers[5].hide()
-              sublayers[6].show()
-              sublayers[7].show()
-              sublayers[8].hide()
-
-              layer.leafletMap.viz.addOverlay({
-                  type: 'tooltip',
-                  layer: sublayers[7],
-                  template: $('#infowindow_mesures').text(),
-                  position: 'bottom|right',
-                  fields: [{ cond: 'cond' }]
-              });
-              sublayers[7].set({ 'interactivity': ['cartodb_id', 'cond'] });
-              sublayers[7].infowindow.set('template', $('#infowindow_mesures').html());
-
-              layer.leafletMap.viz.addOverlay({
-                  type: 'tooltip',
-                  layer: sublayers[6],
-                  template: $('#infowindow_mesures').text(),
-                  position: 'bottom|right',
-                  fields: [{ cond: 'cond' }]
-              });
-              sublayers[6].set({ 'interactivity': ['cartodb_id', 'cond'] });
-              sublayers[6].infowindow.set('template', $('#infowindow_mesures').html());
+    <script type="text/javascript">
+    var layer;
+    var vector = [];
+    var legend;
 
 
+    function main() {
 
-              var op = 0.5;
-              layer.setOpacity(op);
-
-              $(function() {
-                  $( "#slider-default" ).slider({
-                      range: "min",
-                      value: 50,
-                      min: 0,
-                      max: 100,
-                      slide: function( event, ui ) {
-                          $( "#amount" ).val(ui.value + "%" );
-                          op = $( "#slider-default" ).slider( "value" ) / 100;
-                          layer.setOpacity(op);
-                      }
-                  });
-                  $( "#amount" ).val( $( "#slider-default" ).slider( "value" ) + "%");
-              });
-
-            //   var sublayer0Shown = true;
-            //   $("#thermostrati").on('click', function() {
-            //       if (sublayer0Shown) {
-            //           sublayers[0].show();
-            //           sublayers[1].hide();
-            //           sublayers[2].hide();
-            //           // $(Legend_thermostrati.render().el).show()
-            //           $('#map').append(Legend_thermostrati.render().el);
-            //           $(Legend_std.render().el).hide()
-            //           $(Legend_simu.render().el).hide()
-            //           $(Legend_geology.render().el).hide()
-            //           $(Legend_epaisseur.render().el).hide()
-            //           $(Legend_thermostrati.render().el).show()
-              //
-            //           cartodb.vis.Vis.addInfowindow(map, sublayers[0], ['unite_stra'],{
-            //               infowindowTemplate: $('#infowindow_thermostrati').html(),
-            //               templateType: 'mustache'
-            //           });
-              //
-            //       } else {
-            //           sublayers[0].hide();
-            //           $(Legend_thermostrati.render().el).hide()
-            //           $(Legend_std.render().el).hide()
-            //           $(Legend_simu.render().el).hide()
-            //           $(Legend_geology.render().el).hide()
-            //           $(Legend_epaisseur.render().el).hide()
-            //           $(Legend_thermostrati.render().el).hide()
-            //       }
-            //       sublayer0Shown = !sublayer0Shown;
-            //   });
-
-            $(function() {
-                var sublayer0Shown = true;
-              $('#thermostrati').change(function() {
-                  if (sublayer0Shown) {
-                  sublayers[0].show();
-                  sublayers[1].hide();
-                  sublayers[2].hide();
-                  // $(Legend_thermostrati.render().el).show()
-                  $('#map').append(Legend_thermostrati.render().el);                        $(Legend_std.render().el).hide()
-                  $(Legend_simu.render().el).hide()
-                  $(Legend_geology.render().el).hide()
-                  $(Legend_epaisseur.render().el).hide()
-                  $(Legend_thermostrati.render().el).show()
-                  cartodb.vis.Vis.addInfowindow(map, sublayers[0], ['unite_stra'],{
-                      infowindowTemplate: $('#infowindow_thermostrati').html(),
-                      templateType: 'mustache'
-                    })
-                } else {
-                  sublayers[0].hide();
-                  $(Legend_thermostrati.render().el).hide()
-                  $(Legend_std.render().el).hide()
-                  $(Legend_simu.render().el).hide()
-                  $(Legend_geology.render().el).hide()
-                  $(Legend_epaisseur.render().el).hide()
-                  $(Legend_thermostrati.render().el).hide()
-                 }
-                  sublayer0Shown = !sublayer0Shown;
-            })
+        var Legend_simu = new cdb.geo.ui.Legend.Density({
+            title: 'Conductivité thermique simulée (W/mK)',
+            left: "2", right: "4", colors: [ "#3783bb", "#a7d0e4", "#f7f6f6", "#f7b799", "#c94741"]
+        });
+        var Legend_std = new cdb.geo.ui.Legend.Density({
+            title: 'Incertitude',
+            left: "Faible", right: "Élevée", colors: [ "#3783bb", "#a7d0e4", "#f7f6f6", "#f7b799", "#c94741"]
+        });
+        var Legend_geology = new cdb.geo.ui.Legend.Custom({
+            title: "Formations et groupes géologiques",
+            data: [
+                { name: "Lorraine - Formation de Nicolet ",  value: "#e5d0a9" },
+                { name: "Shale d'Utica ",  value: "#cba053" },
+                { name: "Trenton - Formation de Tétrauville ",  value: "#d7e4f9" },
+                { name: "Trenton - Formation de  Montréal",       value: "#3d99fc" },
+                { name: "Trenton - Formation de Deschambault",         value: "#aacbfd" },
+                { name: "Black River",         value: "#44f4f3" },
+                { name: "Cahzy - Formation de Laval",          value: "#d6ffff" },
+                { name: "Beekmantown - Formation de Beauharnois",          value: "#eae1fc" },
+                { name: "Beekmantown - Formation de Theresa",          value: "#fcea91" },
+                { name: "Postsdam - Formation de Cairnside",          value: "#fdfcb5" },
+                { name: "Postsdam - Formation de Covey Hill",          value: "#f4d854" }
+            ]
         });
 
-            $(function() {
-              var sublayer1Shown = true;
-              $('#geology').change(function() {
-                  if (sublayer1Shown) {
-                      sublayers[1].show();
-                      sublayers[0].hide();
-                      sublayers[2].hide();
-                      $('#map').append(Legend_geology.render().el);
-                      $(Legend_thermostrati.render().el).hide()
-                      $(Legend_std.render().el).hide()
-                      $(Legend_simu.render().el).hide()
-                      $(Legend_epaisseur.render().el).hide()
-                      $(Legend_geology.render().el).show()
-                      cartodb.vis.Vis.addInfowindow(map, sublayers[1], ['formation'],{
-                          infowindowTemplate: $('#infowindow_geology').html(),
-                          templateType: 'mustache'
-                      });
-                  } else {
-                      sublayers[1].hide();
-                      $(Legend_thermostrati.render().el).hide()
-                      $(Legend_std.render().el).hide()
-                      $(Legend_simu.render().el).hide()
-                      $(Legend_geology.render().el).hide()
-                      $(Legend_epaisseur.render().el).hide()
-                      // $(Legend_geology.render().el).hide()
-                  }
-                  sublayer1Shown = !sublayer1Shown;
-              })
-          });
+        var Legend_geologysurf = new cdb.geo.ui.Legend.Custom({
+            title: "Géologie de surface",
+            data: [
+                { name: "Terres humides ",  value: "#136400" },
+                { name: "Terrasses alluviales, post glaciaire ",  value: "#229A00" },
+                { name: "Terrasses alluviales, post glaciaire ",  value: "#b2df8a" },
+                { name: "Dépôts marins",       value: "#5CA2D1" },
+                { name: "Dépôts lacustres",         value: "#2167AB" },
+                { name: "Sable et gravier de contact glaciaire",         value: "#FFCC00" },
+                { name: "Till, placages",          value: "#FF9900" }
+            ]
+        });
+
+        var Legend_thermostrati = new cdb.geo.ui.Legend.Custom({
+            title: "Unités thermostratigraphiques",
+            data: [
+                { name: "Queenston et Lorraine",  value: "#ffffcc" },
+                { name: "St. Rosalie et Utica",       value: "#ffeda0" },
+                { name: "Trenton, Black River, Chazy",         value: "#fed976" },
+                { name: "Beauharnois",         value: "#feb24c" },
+                { name: "Theresa",          value: "#fd8d3c" },
+                { name: "Cairnside et Covey Hill",         value: "#fc4e2a" },
+                { name: "Appalaches",          value: "#e31a1c" },
+                { name: "Grenville",         value: "#b10026" }
+
+            ]
+        });
+        var Legend_epaisseur = new cdb.geo.ui.Legend.Density({
+            title: 'Épaisseur dépôts meubles (m)',
+            left: "5", right: "150", colors: [ "#f7fcf0", "#e0f3db", "#ccebc5", "#a8ddb5", "#7bccc4","#4eb3d3","#2b8cbe","#0868ac"]
+        });
+
+        var map = L.map('map', {
+            zoomControl: false,
+            center: [45.558537, -73.712912],
+            zoom: 12
+        });
+
+        // add basemap
+        L.tileLayer('http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png', {attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy; <a href="http://cartodb.com/attributions">CartoDB</a>'}).addTo(map);
+        // add CartoDB layer
+        var sublayers = [];
+        cartodb.createLayer(map, {
+            user_name: 'lperozzi',
+            type: 'cartodb',
+            sublayers: [{
+                sql: "SELECT * FROM geology",
+                cartocss: $("#thermostraticss").text()
+            },
+            {
+                sql: "SELECT * FROM geology",
+                cartocss: $("#geologycss").text()
+            },
+            {
+                sql: "SELECT * FROM geol_surface",
+                cartocss: $("#geolsurfacecss").text()
+            },
+            {
+                sql: "SELECT * FROM epaisseur",
+                cartocss: $("#epaisseurcss").text()
+            },
+            {
+                sql: "SELECT cartodb_id,the_geom,r3,the_geom_webmercator FROM sgs_grid_2", // Earthquake data
+                cartocss: $("#r3css").text()
+            },
+            {
+                sql: "SELECT cartodb_id,the_geom,mean,the_geom_webmercator FROM sgs_grid_2", // Earthquake data
+                cartocss: $("#meancss").text()
+            },
+            {
+                sql: "SELECT cartodb_id,the_geom,std,the_geom_webmercator FROM sgs_grid_2", // Earthquake data
+                cartocss: $("#stdcss").text()
+            },
+            {
+                sql: "SELECT * FROM marmot_forages_affleurements_copy", // Earthquake data
+                cartocss: $("#mesurescss").text()
+            },
+            {
+                sql: "SELECT * FROM marmot_forages_affleurements_copy_1",
+                cartocss: $("#mesurescss").text()
+            },
+            {
+                sql: "SELECT * FROM data_synth ", // Earthquake data
+                cartocss: $("#datasynthscss").text()
+            }]
+        }).addTo(map)
+        .done(function(layer) {
+
+            for (var i = 0; i < layer.getSubLayerCount(); i++) {
+                sublayers[i] = layer.getSubLayer(i);
+                // alert("Congrats, you added sublayer #" + i + "!");
+            }
+
+
+            sublayers[0].hide()
+            sublayers[1].hide()
+            sublayers[2].hide()
+            sublayers[3].hide()
+            sublayers[4].hide()
+            sublayers[5].hide()
+            sublayers[6].hide()
+            sublayers[7].show()
+            sublayers[8].show()
+            sublayers[9].hide()
+
+            layer.leafletMap.viz.addOverlay({
+                type: 'tooltip',
+                layer: sublayers[8],
+                template: $('#infowindow_mesures').text(),
+                position: 'bottom|right',
+                fields: [{ cond: 'cond' }]
+            });
+            sublayers[8].set({ 'interactivity': ['cartodb_id', 'cond'] });
+            sublayers[8].infowindow.set('template', $('#infowindow_mesures').html());
+
+            layer.leafletMap.viz.addOverlay({
+                type: 'tooltip',
+                layer: sublayers[7],
+                template: $('#infowindow_mesures').text(),
+                position: 'bottom|right',
+                fields: [{ cond: 'cond' }]
+            });
+            sublayers[7].set({ 'interactivity': ['cartodb_id', 'cond'] });
+            sublayers[7].infowindow.set('template', $('#infowindow_mesures').html());
+
+
+
+            var op = 0.5;
+            layer.setOpacity(op);
 
             $(function() {
-              var sublayer2Shown = true;
-              $('#epaisseur').change(function() {
-                  if (sublayer2Shown) {
-                      sublayers[2].show();
-                      sublayers[0].hide();
-                      sublayers[1].hide();
-                      $('#map').append(Legend_epaisseur.render().el);
-                      $(Legend_thermostrati.render().el).hide()
-                      $(Legend_std.render().el).hide()
-                      $(Legend_simu.render().el).hide()
-                      $(Legend_geology.render().el).hide()
-                      $(Legend_epaisseur.render().el).show()
-                      cartodb.vis.Vis.addInfowindow(map, sublayers[2], ['gridcode'],{
-                          infowindowTemplate: $('#infowindow_epaisseur').html(),
-                          templateType: 'mustache'
-                      });
-                  } else {
-                      sublayers[2].hide();
-                      $(Legend_thermostrati.render().el).hide()
-                      $(Legend_std.render().el).hide()
-                      $(Legend_simu.render().el).hide()
-                      $(Legend_geology.render().el).hide()
-                      $(Legend_epaisseur.render().el).hide()
-                  }
-                  sublayer2Shown = !sublayer2Shown;
+                $( "#slider-default" ).slider({
+                    range: "min",
+                    value: 50,
+                    min: 0,
+                    max: 100,
+                    slide: function( event, ui ) {
+                        $( "#amount" ).val(ui.value + "%" );
+                        op = $( "#slider-default" ).slider( "value" ) / 100;
+                        layer.setOpacity(op);
+                    }
+                });
+                $( "#amount" ).val( $( "#slider-default" ).slider( "value" ) + "%");
+            });
+
+
+        var sublayer0Shown = true;
+        // $("#thermostrati").on('click', function() {
+        $("#thermostrati").click(function(e){
+            e.preventDefault();
+            // alert('alerted');
+            if (sublayer0Shown) {
+            sublayers[0].show();
+            sublayers[1].hide();
+            sublayers[2].hide();
+            sublayers[3].hide();
+            // $(Legend_thermostrati.render().el).show()
+            $('#map').append(Legend_thermostrati.render().el);
+            $(Legend_std.render().el).hide()
+            $(Legend_simu.render().el).hide()
+            $(Legend_geology.render().el).hide()
+            $(Legend_geologysurf.render().el).hide()
+            $(Legend_epaisseur.render().el).hide()
+            $(Legend_thermostrati.render().el).show()
+            cartodb.vis.Vis.addInfowindow(map, sublayers[0], ['unite_stra'],{
+                infowindowTemplate: $('#infowindow_thermostrati').html(),
+                templateType: 'mustache'
               })
-          });
+          } else {
+            sublayers[0].hide();
+            $(Legend_thermostrati.render().el).hide()
+            $(Legend_std.render().el).hide()
+            $(Legend_simu.render().el).hide()
+            $(Legend_geology.render().el).hide()
+            $(Legend_geologysurf.render().el).hide()
+            $(Legend_epaisseur.render().el).hide()
+            $(Legend_thermostrati.render().el).hide()
+           }
+            sublayer0Shown = !sublayer0Shown;
 
-          $(function() {
-              var sublayer3Shown = true;
-              $('#real').change(function() {
-
-                  if (sublayer3Shown) {
-                      sublayers[3].show();
-                      sublayers[4].hide();
-                      sublayers[5].hide();
-
-                      $('#map').append(Legend_simu.render().el);
-                      $(Legend_thermostrati.render().el).hide()
-                      $(Legend_std.render().el).hide()
-                      $(Legend_geology.render().el).hide()
-                      $(Legend_epaisseur.render().el).hide()
-                      $(Legend_simu.render().el).show()
-                      layer.leafletMap.viz.addOverlay({
-                          type: 'tooltip',
-                          layer: sublayers[3],
-                          template: $('#infowindow_r3').text(),
-                          position: 'bottom|left',
-                          fields: [{ r3: 'r3' }]
-                      });
-                      sublayers[3].set({ 'interactivity': ['r3'] });
-                      sublayers[3].infowindow.set('template', $('#infowindow_r3').html());
-                  } else {
-                      sublayers[3].hide();
-                      $(Legend_thermostrati.render().el).hide()
-                      $(Legend_std.render().el).hide()
-                      $(Legend_simu.render().el).hide()
-                      $(Legend_geology.render().el).hide()
-                      $(Legend_epaisseur.render().el).hide()
-                      // $(Legend_simu.render().el).hide()
-                  }
-                  sublayer3Shown = !sublayer3Shown;
-              })
-          });
-
-          $(function() {
-              var sublayer4Shown = true;
-              $('#mean').change(function() {
-
-                  if (sublayer4Shown) {
-                      sublayers[4].show();
-                      sublayers[3].hide();
-                      sublayers[5].hide();
-                      $('#map').append(Legend_simu.render().el);
-                      $(Legend_thermostrati.render().el).hide()
-                      $(Legend_std.render().el).hide()
-                      $(Legend_geology.render().el).hide()
-                      $(Legend_epaisseur.render().el).hide()
-                      $(Legend_simu.render().el).show()
-                      layer.leafletMap.viz.addOverlay({
-                          type: 'tooltip',
-                          layer: sublayers[4],
-                          template: $('#infowindow_mean').text(),
-                          position: 'bottom|left',
-                          fields: [{mean: 'mean' }]
-                      });
-                      sublayers[4].set({ 'interactivity': ['mean'] });
-                      sublayers[4].infowindow.set('template', $('#infowindow_mean').html());
-                  } else {
-                      sublayers[4].hide();
-                      $(Legend_thermostrati.render().el).hide()
-                      $(Legend_std.render().el).hide()
-                      $(Legend_simu.render().el).hide()
-                      $(Legend_geology.render().el).hide()
-                      $(Legend_epaisseur.render().el).hide()
-                  }
-                  sublayer4Shown = !sublayer4Shown;
-              })
-          });
-
-          $(function() {
-              var sublayer5Shown = true;
-              $('#std').change(function() {
-                  if (sublayer5Shown) {
-                      sublayers[5].show();
-                      sublayers[4].hide();
-                      sublayers[3].hide();
-                      $('#map').append(Legend_std.render().el);
-                      $(Legend_thermostrati.render().el).hide()
-                      $(Legend_simu.render().el).hide()
-                      $(Legend_geology.render().el).hide()
-                      $(Legend_epaisseur.render().el).hide()
-                      $(Legend_std.render().el).show()
-                      layer.leafletMap.viz.addOverlay({
-                          type: 'tooltip',
-                          layer: sublayers[5],
-                          template: $('#infowindow_std').text(),
-                          position: 'bottom|left',
-                          fields: [{ std: 'std' }]
-                      });
-                      sublayers[5].set({ 'interactivity': ['std'] });
-                      sublayers[5].infowindow.set('template', $('#infowindow_std').html());
-                  } else {
-                      sublayers[5].hide();
-                      $(Legend_thermostrati.render().el).hide()
-                      $(Legend_std.render().el).hide()
-                      $(Legend_simu.render().el).hide()
-                      $(Legend_geology.render().el).hide()
-                      $(Legend_epaisseur.render().el).hide()
-                      // $(Legend_std.render().el).hide()
-                  }
-                  sublayer5Shown = !sublayer5Shown;
-              })
-          });
-
-          $(function() {
-              var sublayer6Shown = false;
-              $('#affleurement').change(function() {
-                  if (sublayer6Shown) {
-                      sublayers[6].show();
-                  } else {
-                      sublayers[6].hide();
-                  }
-                  sublayer6Shown = !sublayer6Shown;
-              })
-          });
-
-          $(function() {
-              var sublayer7Shown = false;
-              $('#forage').change(function() {
-                  if (sublayer7Shown) {
-                      sublayers[7].show();
-                  } else {
-                      sublayers[7].hide();
-                  }
-                  sublayer7Shown = !sublayer7Shown;
-              })
-          });
-
-          $(function() {
-              var sublayer8Shown = true;
-              $('#synth').change(function() {
-                  if (sublayer8Shown) {
-                      sublayers[8].show();
-                      layer.leafletMap.viz.addOverlay({
-                          type: 'tooltip',
-                          layer: sublayers[8],
-                          template: $('#infowindow_synth').text(),
-                          position: 'bottom|left',
-                          fields: [{ std: 'cond' }]
-                      });
-                      sublayers[8].set({ 'interactivity': ['cartodb_id', 'cond'] });
-                      sublayers[8].infowindow.set('template', $('#infowindow_synth').html());
-                  } else {
-                      sublayers[8].hide();
-                  }
-                  sublayer8Shown = !sublayer8Shown;
-              })
-          });
-
-              var searchBox = cdb.vis.Overlay.create('search', map.viz, {});
-              searchBox.show();
-              $('#map').append(searchBox.render().el);
+        });
 
 
-          })
-          .error(function(err) {
-              console.log("error: " + err);
-          });
+            var sublayer1Shown = true;
+            $("#geology").click(function(e){
+                e.preventDefault();
+                if (sublayer1Shown) {
+                    sublayers[1].show();
+                    sublayers[0].hide();
+                    sublayers[2].hide();
+                    sublayers[3].hide();
+                    $('#map').append(Legend_geology.render().el);
+                    $(Legend_thermostrati.render().el).hide()
+                    $(Legend_std.render().el).hide()
+                    $(Legend_simu.render().el).hide()
+                    $(Legend_epaisseur.render().el).hide()
+                    $(Legend_geology.render().el).show()
+                    $(Legend_geologysurf.render().el).hide()
+                    cartodb.vis.Vis.addInfowindow(map, sublayers[1], ['formation'],{
+                        infowindowTemplate: $('#infowindow_geology').html(),
+                        templateType: 'mustache'
+                    });
+                } else {
+                    sublayers[1].hide();
+                    $(Legend_thermostrati.render().el).hide()
+                    $(Legend_std.render().el).hide()
+                    $(Legend_simu.render().el).hide()
+                    $(Legend_geology.render().el).hide()
+                    $(Legend_epaisseur.render().el).hide()
+                    $(Legend_geologysurf.render().el).hide()
+                    // $(Legend_geology.render().el).hide()
+                }
+                sublayer1Shown = !sublayer1Shown;
+            });
 
-      }
 
-      window.onload = main;
+            var sublayer2Shown = true;
+            $("#geologysurf").click(function(e){
+                e.preventDefault();
+                if (sublayer2Shown) {
+                    sublayers[2].show();
+                    sublayers[0].hide();
+                    sublayers[1].hide();
+                    sublayers[3].hide();
+                    $('#map').append(Legend_geologysurf.render().el);
+                    $(Legend_thermostrati.render().el).hide()
+                    $(Legend_std.render().el).hide()
+                    $(Legend_simu.render().el).hide()
+                    $(Legend_geology.render().el).hide()
+                    $(Legend_geologysurf.render().el).show()
+                    $(Legend_epaisseur.render().el).hide()
+                    cartodb.vis.Vis.addInfowindow(map, sublayers[2], ['nom_f'],{
+                        infowindowTemplate: $('#infowindow_geologysurf').html(),
+                        templateType: 'mustache'
+                    });
+                } else {
+                    sublayers[2].hide();
+                    $(Legend_thermostrati.render().el).hide()
+                    $(Legend_std.render().el).hide()
+                    $(Legend_simu.render().el).hide()
+                    $(Legend_geology.render().el).hide()
+                    $(Legend_epaisseur.render().el).hide()
+                    $(Legend_geologysurf.render().el).show()
+                }
+                sublayer2Shown = !sublayer2Shown;
+        });
 
-      </script>
+            var sublayer3Shown = true;
+            $("#epaisseur").click(function(e){
+                e.preventDefault();
+                if (sublayer3Shown) {
+                    sublayers[2].hide();
+                    sublayers[0].hide();
+                    sublayers[1].hide();
+                    sublayers[3].show();
+                    $('#map').append(Legend_epaisseur.render().el);
+                    $(Legend_thermostrati.render().el).hide()
+                    $(Legend_std.render().el).hide()
+                    $(Legend_simu.render().el).hide()
+                    $(Legend_geology.render().el).hide()
+                    $(Legend_geologysurf.render().el).hide()
+                    $(Legend_epaisseur.render().el).show()
+                    cartodb.vis.Vis.addInfowindow(map, sublayers[3], ['gridcode'],{
+                        infowindowTemplate: $('#infowindow_epaisseur').html(),
+                        templateType: 'mustache'
+                    });
+                } else {
+                    sublayers[2].hide();
+                    $(Legend_thermostrati.render().el).hide()
+                    $(Legend_std.render().el).hide()
+                    $(Legend_simu.render().el).hide()
+                    $(Legend_geology.render().el).hide()
+                    $(Legend_geologysurf.render().el).hide()
+                    $(Legend_epaisseur.render().el).hide()
+                }
+                sublayer3Shown = !sublayer3Shown;
+        });
+
+            var sublayer4Shown = true;
+            $("#real").click(function(e){
+                e.preventDefault();
+                if (sublayer4Shown) {
+                    sublayers[4].show();
+                    sublayers[5].hide();
+                    sublayers[6].hide();
+
+                    $('#map').append(Legend_simu.render().el);
+                    $(Legend_thermostrati.render().el).hide()
+                    $(Legend_std.render().el).hide()
+                    $(Legend_geology.render().el).hide()
+                    $(Legend_geologysurf.render().el).hide()
+                    $(Legend_epaisseur.render().el).hide()
+                    $(Legend_simu.render().el).show()
+                    layer.leafletMap.viz.addOverlay({
+                        type: 'tooltip',
+                        layer: sublayers[4],
+                        template: $('#infowindow_r3').text(),
+                        position: 'bottom|left',
+                        fields: [{ r3: 'r3' }]
+                    });
+                    sublayers[4].set({ 'interactivity': ['r3'] });
+                    sublayers[4].infowindow.set('template', $('#infowindow_r3').html());
+                } else {
+                    sublayers[4].hide();
+                    $(Legend_thermostrati.render().el).hide()
+                    $(Legend_std.render().el).hide()
+                    $(Legend_simu.render().el).hide()
+                    $(Legend_geology.render().el).hide()
+                    $(Legend_geologysurf.render().el).hide()
+                    $(Legend_epaisseur.render().el).hide()
+                    // $(Legend_simu.render().el).hide()
+                }
+                sublayer4Shown = !sublayer4Shown;
+        });
+
+            var sublayer5Shown = true;
+            $("#mean").click(function(e){
+                e.preventDefault();
+                if (sublayer5Shown) {
+                    sublayers[5].show();
+                    sublayers[4].hide();
+                    sublayers[6].hide();
+                    $('#map').append(Legend_simu.render().el);
+                    $(Legend_thermostrati.render().el).hide()
+                    $(Legend_std.render().el).hide()
+                    $(Legend_geology.render().el).hide()
+                    $(Legend_geologysurf.render().el).hide()
+                    $(Legend_epaisseur.render().el).hide()
+                    $(Legend_simu.render().el).show()
+                    layer.leafletMap.viz.addOverlay({
+                        type: 'tooltip',
+                        layer: sublayers[5],
+                        template: $('#infowindow_mean').text(),
+                        position: 'bottom|left',
+                        fields: [{mean: 'mean' }]
+                    });
+                    sublayers[5].set({ 'interactivity': ['mean'] });
+                    sublayers[5].infowindow.set('template', $('#infowindow_mean').html());
+                } else {
+                    sublayers[5].hide();
+                    $(Legend_thermostrati.render().el).hide()
+                    $(Legend_std.render().el).hide()
+                    $(Legend_simu.render().el).hide()
+                    $(Legend_geology.render().el).hide()
+                    $(Legend_geologysurf.render().el).hide()
+                    $(Legend_epaisseur.render().el).hide()
+                }
+                sublayer5Shown = !sublayer5Shown;
+        });
+
+            var sublayer6Shown = true;
+            $("#std").click(function(e){
+                e.preventDefault();
+                if (sublayer6Shown) {
+                    sublayers[6].show();
+                    sublayers[5].hide();
+                    sublayers[4].hide();
+                    $('#map').append(Legend_std.render().el);
+                    $(Legend_thermostrati.render().el).hide()
+                    $(Legend_simu.render().el).hide()
+                    $(Legend_geology.render().el).hide()
+                    $(Legend_geologysurf.render().el).hide()
+                    $(Legend_epaisseur.render().el).hide()
+                    $(Legend_std.render().el).show()
+                    layer.leafletMap.viz.addOverlay({
+                        type: 'tooltip',
+                        layer: sublayers[6],
+                        template: $('#infowindow_std').text(),
+                        position: 'bottom|left',
+                        fields: [{ std: 'std' }]
+                    });
+                    sublayers[6].set({ 'interactivity': ['std'] });
+                    sublayers[6].infowindow.set('template', $('#infowindow_std').html());
+                } else {
+                    sublayers[6].hide();
+                    $(Legend_thermostrati.render().el).hide()
+                    $(Legend_std.render().el).hide()
+                    $(Legend_simu.render().el).hide()
+                    $(Legend_geology.render().el).hide()
+                    $(Legend_geologysurf.render().el).hide()
+                    $(Legend_epaisseur.render().el).hide()
+                    // $(Legend_std.render().el).hide()
+                }
+                sublayer6Shown = !sublayer6Shown;
+        });
+
+            var sublayer7Shown = false;
+            $("#affleurement").click(function(e){
+                e.preventDefault();
+                if (sublayer7Shown) {
+                    sublayers[7].show();
+                } else {
+                    sublayers[7].hide();
+                }
+                sublayer7Shown = !sublayer7Shown;
+        });
+
+            var sublayer8Shown = false;
+            $("#forage").click(function(e){
+                e.preventDefault();
+                if (sublayer8Shown) {
+                    sublayers[8].show();
+                } else {
+                    sublayers[8].hide();
+                }
+                sublayer8Shown = !sublayer8Shown;
+        });
+
+            var sublayer9Shown = true;
+            $("#synth").click(function(e){
+                e.preventDefault();
+                if (sublayer9Shown) {
+                    sublayers[9].show();
+                    layer.leafletMap.viz.addOverlay({
+                        type: 'tooltip',
+                        layer: sublayers[9],
+                        template: $('#infowindow_synth').text(),
+                        position: 'bottom|left',
+                        fields: [{ std: 'cond' }]
+                    });
+                    sublayers[9].set({ 'interactivity': ['cartodb_id', 'cond'] });
+                    sublayers[9].infowindow.set('template', $('#infowindow_synth').html());
+                } else {
+                    sublayers[9].hide();
+                }
+                sublayer9Shown = !sublayer9Shown;
+        });
+
+            // $(".dropdown1").on("show.bs.dropdown", function(e){
+            //     var linkText = $(e.relatedTarget).text(); // Get the link text
+            //     alert("Click on OK button to view the dropdown menu for - " + linkText);
+            // });
+
+
+            var searchBox = cdb.vis.Overlay.create('search', map.viz, {});
+            searchBox.show();
+            $('#map').append(searchBox.render().el);
+
+
+        })
+        .error(function(err) {
+            console.log("error: " + err);
+        });
+
+    }
+
+    window.onload = main;
+
+    </script>
   </body>
 </html>
