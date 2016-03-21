@@ -329,59 +329,138 @@ ul, ol {
     </style>
 
     <style type="cartocss/html" id="geologycss">
-        /** category visualization */
+    /** category visualization */
 
-        #geology {
-           polygon-opacity: 0;
-           line-color: #000000;
-           line-width: 0.5;
-           line-opacity: 1;
-        }
+    #geologie {
+    polygon-opacity: 0;
+    line-color: #000000;
+    line-width: 0.2;
+    line-opacity: 1;
+    }
 
-        #geology[formation="Formation de Beauharnois"] {
-           polygon-fill: #eae1fc;
-          polygon-opacity: 1;
-        }
-        #geology[formation="Formation de Deschambault"] {
-           polygon-fill: #aacbfd;
-          polygon-opacity: 1;
-        }
-        #geology[formation="Formation de Cairnside"] {
-           polygon-fill: #fdfcb5;
-          polygon-opacity: 1;
-        }
-        #geology[formation="Formation de Laval"] {
-           polygon-fill: #d6ffff;
-          polygon-opacity: 1;
-        }
-        #geology[formation="Formation de Tétreauville (Région de Montréal); Formation de Neuville, Membre de Grondines (Région de Québec)"] {
-           polygon-fill: #d7e4f9;
-          polygon-opacity: 1;
-        }
-        #geology[formation="Shale d'Utica"] {
-           polygon-fill: #cba053;
-          polygon-opacity: 1;
-        }
-        #geology[formation="Formation de Theresa"] {
-           polygon-fill: #fcea91;
-          polygon-opacity: 1;
-        }
-        #geology[formation="Formations de Leray, de Lowville et de Pamelia"] {
-           polygon-fill: #44f4f3;
-          polygon-opacity: 1;
-        }
-        #geology[formation="Formations de Montréal et de Neuville"] {
-           polygon-fill: #3d99fc;
-          polygon-opacity: 1;
-        }
-        #geology[formation="Formation de Covey Hill"] {
-           polygon-fill: #f4d854;
-          polygon-opacity: 1;
-        }
-        #geology[formation="Formation de Nicolet"] {
-           polygon-fill: #e5d0a9;
-          polygon-opacity: 1;
-        }
+    #geologie[formation="Formation de Beauharnois"] {
+    polygon-fill: #eae1fc;
+    polygon-opacity: 1;
+    }
+    #geologie[formation="Formation de Deschambault"] {
+    polygon-fill: #aacbfd;
+    polygon-opacity: 1;
+    }
+    #geologie[formation="Formation de Cairnside"] {
+    polygon-fill: #fdfcb5;
+    polygon-opacity: 1;
+    }
+    #geologie[formation="Formation de Laval"] {
+    polygon-fill: #d6ffff;
+    polygon-opacity: 1;
+    }
+    #geologie[formation="Formation de Tétreauville (Région de Montréal); Formation de Neuville, Membre de Grondines (Région de Québec)"] {
+    polygon-fill: #d7e4f9;
+    polygon-opacity: 1;
+    }
+    #geologie[formation="Shale d'Utica"] {
+    polygon-fill: #cba053;
+    polygon-opacity: 1;
+    }
+    #geologie[formation="Formation de Theresa"] {
+    polygon-fill: #fcea91;
+    polygon-opacity: 1;
+    }
+    #geologie[formation="Formations de Leray, de Lowville et de Pamelia"] {
+    polygon-fill: #44f4f3;
+    polygon-opacity: 1;
+    }
+    #geologie[formation="Formations de Montréal et de Neuville"] {
+    polygon-fill: #3d99fc;
+    polygon-opacity: 1;
+    }
+    #geologie[formation="Formation de Covey Hill"] {
+    polygon-fill: #f4d854;
+    polygon-opacity: 1;
+    }
+    #geologie[formation="Formation de Nicolet"] {
+    polygon-fill: #e5d0a9;
+    polygon-opacity: 1;
+    }
+    #geologie[lithologie="Non diffrenci : calcaire et shale"] {
+    polygon-fill: #3342ce;
+    polygon-opacity: 1;
+    }
+    #geologie[lithodeme="Membre de Rosemont (Rgion de Montral)"] {
+    polygon-fill: #adfcfb;
+    polygon-opacity: 1;
+    }
+    #geologie[lithodeme="Collines Montrgiennes"] {
+    polygon-fill: #8c452d;
+    polygon-opacity: 1;
+    }
+    #geologie[lithologie="Anorthosite et gabbronorite"] {
+    polygon-fill: #f6c983;
+    polygon-opacity: 1;
+    }
+    #geologie[lithodeme="Stock du mont Rigaud (564 Ma)"] {
+    polygon-fill: #ee5c1b;
+    polygon-opacity: 1;
+    }
+    #geologie[lithodeme="Facis de Terrebonne"] {
+    polygon-fill: #81b2fd;
+    polygon-opacity: 1;
+    }
+    #geologie[formation="Formation de Pontgravé"] {
+    polygon-fill: #87f9f8;
+    polygon-opacity: 1;
+    }
+    #geologie[formation="Formation de Bécancour"] {
+    polygon-fill: #d8b87d;
+    polygon-opacity: 1;
+    }
+    #geologie[formation="Formations de Sainte-Sabine et de Les Fonds"] {
+    polygon-fill: #f3dfd5;
+    polygon-opacity: 1;
+    }
+    #geologie[formation="Formation de Bourret"] {
+    polygon-fill: #bd892c;
+    polygon-opacity: 1;
+    }
+    #geologie[formation="Formation d'Iberville"] {
+    polygon-fill: #f4e9d5;
+    polygon-opacity: 1;
+    }
+    #geologie[formation="Formation de Stony Point"] {
+    polygon-fill: #bd892c;
+    polygon-opacity: 1;
+    }
+    #geologie[groupe="Groupe de Sillery"] {
+    polygon-fill: #f4e9d5;
+    polygon-opacity: 1;
+    }
+    #geologie[lithodeme="Olistostrome de la Rivire Etchemin"] {
+    polygon-fill: #61e35c;
+    polygon-opacity: 1;
+    }
+    #geologie[groupe="Groupe de Stanbridge"] {
+    polygon-fill: #adfcfb;
+    polygon-opacity: 1;
+    }
+
+    #geologie[groupe="Groupe de Philipsburg"] {
+    polygon-fill: #d5e4fe;
+    polygon-opacity: 1;
+    }
+    #geologie[formation="Formation de Mawcook"] {
+    polygon-fill: #f4e9d5;
+    polygon-opacity: 1;
+    }
+    #geologie[formation="Formation de la Ville de Québec"] {
+    polygon-fill: #aacbfd;
+    polygon-opacity: 1;
+    }
+
+    #geologie[formation="Formation de Lévis"] {
+    polygon-fill: #d8b87d;
+    polygon-opacity: 1;
+    }
+
     </style>
 
 
@@ -480,37 +559,129 @@ ul, ol {
 
     /** category visualization */
 
-    #geol_surface {
+    #geologie_surface {
        polygon-opacity: 0.7;
-       line-color: #000000;
-       line-width: 0.2;
-       line-opacity: 1;
+       line-color: #FFF;
+       line-width: 0.5;
+       line-opacity: 0;
     }
 
-    #geol_surface[legende="1"] {
-       polygon-fill: #229A00;
+
+    #geologie_surface[legend2_fr="Dpts organiques"] {
+       polygon-fill: #cfbfd8;
     }
-    #geol_surface[legende="2"] {
-       polygon-fill: #b2df8a;
+    #geologie_surface[legend2_fr="Roches"] {
+       polygon-fill: #f2d8ce;
     }
-    #geol_surface[legende="3"] {
-       polygon-fill: #B2DF8A;
+    #geologie_surface[legend2_fr="Roches mtamorphiques et magmatiques prcambriennes du Bouclier canadien"] {
+       polygon-fill: #f2d8ce;
     }
-    #geol_surface[legende="4"] {
-       polygon-fill: #5CA2D1;
+    #geologie_surface[legend2_fr="Roches sdimentaires ordoviciennes de la Plate-forme du Saint-Laurent"] {
+       polygon-fill: #f2d8ce;
     }
-    #geol_surface[legende="5"] {
-       polygon-fill: #2167AB;
+    #geologie_surface[legend2_fr="Roches cambro-ordoviciennes du Domaine des nappes externes des Appalaches"] {
+       polygon-fill: #f2d8ce;
     }
-    #geol_surface[legende="6"] {
-       polygon-fill: #FFCC00;
+    #geologie_surface[legend1_fr="Roche en place"] {
+       polygon-fill: #f2d8ce;
     }
-    #geol_surface[legende="7"] {
-       polygon-fill: #FF9900;
+    #geologie_surface[legend2_fr="Sdiments littoraux, prlittoraux et d'exondation"] {
+       polygon-fill: #c0d8a4;
     }
-    #geol_surface[legende="8"] {
-       polygon-fill: #2167AB;
+    #geologie_surface[legend2_fr="Till en couverture discontinue"] {
+       polygon-fill: #c0d8a4;
     }
+    #geologie_surface[legend2_fr="Till remani"] {
+       polygon-fill: #c0d8a4;
+    }
+    #geologie_surface[legend2_fr="Till remani en couverture discontinue"] {
+       polygon-fill: #c0d8a4;
+    }
+    #geologie_surface[legend2_fr="Till, plaine"] {
+       polygon-fill: #c0d8a4;
+    }
+    #geologie_surface[legend2_fr="Sdiments oliens"] {
+       polygon-fill: #c0d8a4;
+    }
+    #geologie_surface[legend2_fr="Till, surface fortement ondule"] {
+       polygon-fill: #c0d8a4;
+    }
+    #geologie_surface[legend2_fr="Unit gologique compose"] {
+       polygon-fill: #c0d8a4;
+    }
+    #geologie_surface[legend2_fr="Sdiments remanis par glissement de terrain"] {
+       polygon-fill: #c0d8a4;
+    }
+    #geologie_surface[legend2_fr="Till en couverture gnralement continue"] {
+       polygon-fill: #c0d8a4;
+    }
+    #geologie_surface[legend1_fr="Sédiments fluvioglaciaires"] {
+       polygon-fill: #c0d8a4;
+    }
+    #geologie_surface[legend2_fr="Sdiments intertidaux"] {
+       polygon-fill: #c0d8a4;
+    }
+    #geologie_surface[legend1_fr="Sédiments glaciaires"] {
+       polygon-fill: #c0d8a4;
+    }
+    #geologie_surface[legend1_fr="Quaternaire"] {
+       polygon-fill: #c0d8a4;
+    }
+    #geologie_surface[legend2_fr="Dpts de fonte de glaciers"] {
+       polygon-fill: #f7e58b;
+    }
+    #geologie_surface[legend2_fr="Sdiments juxtaglaciaires"] {
+       polygon-fill: #f7e58b;
+    }
+    #geologie_surface[legend2_fr="Gravier, sable et blocs dpts de plage"] {
+       polygon-fill: #f7ca4d;
+    }
+    #geologie_surface[legend2_fr="Sable moyen, lit, parfois silteux"] {
+       polygon-fill: #eaa54b;
+    }
+    #geologie_surface[legend1_fr="Sédiments deltaiques"] {
+       polygon-fill: #eaa54b;
+    }
+    #geologie_surface[legend1_fr="Sédiments zone littorale et sublittorale"] {
+       polygon-fill: #eaa54b;
+    }
+    #geologie_surface[legend2_fr="Argile, argile limoneuse, limon et limon sableux"] {
+       polygon-fill: #61a8d8;
+    }
+    #geologie_surface[legend2_fr="Alluvions actuelles"] {
+       polygon-fill: #61a8d8;
+    }
+    #geologie_surface[legend2_fr="Sable silteux, silt, sable et argile"] {
+       polygon-fill: #61a8d8;
+    }
+    #geologie_surface[legend2_fr="Argile et limon formant lasurface d'rosion des terrasses fluviales"] {
+       polygon-fill: #61a8d8;
+    }
+    #geologie_surface[legend2_fr="Alluvions des terrasses fluviales"] {
+       polygon-fill: #61a8d8;
+    }
+    #geologie_surface[legend2_fr="Alluvions des terrasses fluviales anciennes"] {
+       polygon-fill: #61a8d8;
+    }
+    #geologie_surface[legend2_fr="Sdiments deltaques"] {
+       polygon-fill: #61a8d8;
+    }
+    #geologie_surface[legend2_fr="Sdiments fins d'eau profonde"] {
+       polygon-fill: #b8d6dd;
+    }
+    #geologie_surface[legend2_fr="Hors zone"] {
+       polygon-fill: #000000;
+      polygon-opacity:0;
+    }
+    #geologie_surface {
+       polygon-fill: #F11810;
+    }
+
+
+
+
+
+
     </style>
 
   </head>
@@ -673,8 +844,12 @@ ul, ol {
       <a href="#close" class="cartodb-popup-close-button close">x</a>
          <div class="cartodb-popup-content-wrapper">
            <div class="cartodb-popup-content">
-             <h4 style="text-transform:none;font-size:14px;color:#404040">Géologie</h4>
+             <h4 style="text-transform:none;font-size:14px;color:#404040">Groupe</h4>
+             <p style="text-transform:none;font-size:14px;color:#000">{{groupe}}</p>
+             <h4 style="text-transform:none;font-size:14px;color:#404040">Formation</h4>
              <p style="text-transform:none;font-size:14px;color:#000">{{formation}}</p>
+             <h4 style="text-transform:none;font-size:14px;color:#404040">Lithologie</h4>
+             <p style="text-transform:none;font-size:14px;color:#000">{{lithologie}}</p>
            </div>
          </div>
          <div class="cartodb-popup-tip-container"></div>
@@ -700,7 +875,7 @@ ul, ol {
          <div class="cartodb-popup-content-wrapper">
            <div class="cartodb-popup-content">
              <h4 style="text-transform:none;font-size:14px;color:#404040">Géologie de surface</h4>
-             <p style="text-transform:none;font-size:14px;color:#000">{{nom_f}}</p>
+             <p style="text-transform:none;font-size:14px;color:#000">{{legend1_fr}}</p>
            </div>
          </div>
          <div class="cartodb-popup-tip-container"></div>
@@ -804,13 +979,13 @@ ul, ol {
         var Legend_geologysurf = new cdb.geo.ui.Legend.Custom({
             title: "Géologie de surface",
             data: [
-                { name: "Terres humides ",  value: "#136400" },
-                { name: "Terrasses alluviales, post glaciaire ",  value: "#229A00" },
+                { name: "Sédiments organiques ",  value: "#cfbfd8" },
                 { name: "Terrasses alluviales, post glaciaire ",  value: "#b2df8a" },
-                { name: "Dépôts marins",       value: "#5CA2D1" },
-                { name: "Dépôts lacustres",         value: "#2167AB" },
-                { name: "Sable et gravier de contact glaciaire",         value: "#FFCC00" },
-                { name: "Till, placages",          value: "#FF9900" }
+                { name: "Argile et limon",       value: "#61a8d8" },
+                { name: "Sédiments d'eau profonde",       value: "#b8d6dd" },
+                { name: "Sédiments juxtaglaciaires",         value: "#f7e58b" },
+                { name: "Sédiments post glaciaire ",  value: "#c0d8a4" },
+                { name: "Roche en place",          value: "#f2d8ce" }
             ]
         });
 
@@ -844,18 +1019,18 @@ ul, ol {
         // add CartoDB layer
         var sublayers = [];
         cartodb.createLayer(map, {
-            user_name: 'lperozzi',
+            user_name: 'marmott',
             type: 'cartodb',
             sublayers: [{
-                sql: "SELECT * FROM geology",
+                sql: "SELECT * FROM geologie",
                 cartocss: $("#thermostraticss").text()
             },
             {
-                sql: "SELECT * FROM geology",
+                sql: "SELECT * FROM geologie",
                 cartocss: $("#geologycss").text()
             },
             {
-                sql: "SELECT * FROM geol_surface",
+                sql: "SELECT * FROM geologie_surface",
                 cartocss: $("#geolsurfacecss").text()
             },
             {
@@ -863,27 +1038,27 @@ ul, ol {
                 cartocss: $("#epaisseurcss").text()
             },
             {
-                sql: "SELECT cartodb_id,the_geom,r3,the_geom_webmercator FROM sgs_grid_2", // Earthquake data
+                sql: "SELECT cartodb_id,the_geom,r3,the_geom_webmercator FROM simulations", // Earthquake data
                 cartocss: $("#r3css").text()
             },
             {
-                sql: "SELECT cartodb_id,the_geom,mean,the_geom_webmercator FROM sgs_grid_2", // Earthquake data
+                sql: "SELECT cartodb_id,the_geom,mean,the_geom_webmercator FROM simulations", // Earthquake data
                 cartocss: $("#meancss").text()
             },
             {
-                sql: "SELECT cartodb_id,the_geom,std,the_geom_webmercator FROM sgs_grid_2", // Earthquake data
+                sql: "SELECT cartodb_id,the_geom,std,the_geom_webmercator FROM simulations", // Earthquake data
                 cartocss: $("#stdcss").text()
             },
             {
-                sql: "SELECT * FROM marmot_forages_affleurements_copy", // Earthquake data
+                sql: "SELECT * FROM affleurements", // Earthquake data
                 cartocss: $("#mesurescss").text()
             },
             {
-                sql: "SELECT * FROM marmot_forages_affleurements_copy_1",
+                sql: "SELECT * FROM forages",
                 cartocss: $("#mesurescss").text()
             },
             {
-                sql: "SELECT * FROM data_synth ", // Earthquake data
+                sql: "SELECT * FROM synthetiques ", // Earthquake data
                 cartocss: $("#datasynthscss").text()
             }]
         }).addTo(map)
@@ -999,7 +1174,7 @@ ul, ol {
                     $(Legend_epaisseur.render().el).hide()
                     $(Legend_geology.render().el).show()
                     $(Legend_geologysurf.render().el).hide()
-                    cartodb.vis.Vis.addInfowindow(map, sublayers[1], ['formation'],{
+                    cartodb.vis.Vis.addInfowindow(map, sublayers[1], ['formation','groupe','lithologie'],{
                         infowindowTemplate: $('#infowindow_geology').html(),
                         templateType: 'mustache'
                     });
@@ -1032,7 +1207,7 @@ ul, ol {
                     $(Legend_geology.render().el).hide()
                     $(Legend_geologysurf.render().el).show()
                     $(Legend_epaisseur.render().el).hide()
-                    cartodb.vis.Vis.addInfowindow(map, sublayers[2], ['nom_f'],{
+                    cartodb.vis.Vis.addInfowindow(map, sublayers[2], ['legend1_fr'],{
                         infowindowTemplate: $('#infowindow_geologysurf').html(),
                         templateType: 'mustache'
                     });
