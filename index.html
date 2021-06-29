@@ -23,7 +23,9 @@
     <!-- <link href="assets/css/ct-paper.css" rel="stylesheet"/> -->
     <link href="assets/css/demo.css" rel="stylesheet" />
     <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.0/css/bootstrap-toggle.min.css" rel="stylesheet">
-
+    <!-- Include Leaflet -->
+    <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"></script>
+    <link href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css" rel="stylesheet">
     <!-- Include CARTO.js -->
     <script src="https://cartodb-libs.global.ssl.fastly.net/carto.js/v4.2.0/carto.min.js"></script>
     
@@ -1015,6 +1017,9 @@ ul, ol {
             center: [45.558537, -73.712912],
             zoom: 12
         });
+      
+      const map = L.map('map').setView([50, 15], 4);
+
 
         // add basemap
         L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/dark_all/{z}/{x}/{y}.png', {attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy; <a href="http://cartodb.com/attributions">CartoDB</a>'}).addTo(map);
